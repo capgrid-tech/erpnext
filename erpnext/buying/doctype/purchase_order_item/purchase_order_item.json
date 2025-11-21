@@ -121,13 +121,14 @@
    "oldfieldname": "item_code",
    "oldfieldtype": "Link",
    "options": "Item",
+   "permlevel": 1,
    "reqd": 1,
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "supplier_part_no",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Supplier Part Number",
    "print_hide": 1,
    "read_only": 1
@@ -143,6 +144,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "column_break_4",
    "fieldtype": "Column Break"
   },
@@ -184,6 +186,7 @@
    "width": "300px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "col_break1",
    "fieldtype": "Column Break"
   },
@@ -201,11 +204,13 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "quantity_and_rate",
    "fieldtype": "Section Break",
    "label": "Quantity and Rate"
   },
   {
+   "allow_on_submit": 1,
    "bold": 1,
    "columns": 1,
    "fieldname": "qty",
@@ -214,11 +219,13 @@
    "label": "Quantity",
    "oldfieldname": "qty",
    "oldfieldtype": "Currency",
+   "permlevel": 1,
    "print_width": "60px",
    "reqd": 1,
    "width": "60px"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.uom != doc.stock_uom",
    "fieldname": "stock_uom",
    "fieldtype": "Link",
@@ -232,6 +239,7 @@
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "col_break2",
    "fieldtype": "Column Break",
    "print_hide": 1
@@ -246,6 +254,7 @@
    "oldfieldtype": "Link",
    "options": "UOM",
    "print_width": "100px",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -261,23 +270,28 @@
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "sec_break1",
    "fieldtype": "Section Break"
   },
   {
    "fieldname": "price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate",
    "options": "currency",
-   "print_hide": 1
+   "print_hide": 1,
+   "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "price_list_rate",
    "fieldname": "discount_percentage",
    "fieldtype": "Percent",
    "label": "Discount on Price List Rate (%)"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "price_list_rate",
    "fieldname": "discount_amount",
    "fieldtype": "Currency",
@@ -285,6 +299,7 @@
    "options": "currency"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "col_break3",
    "fieldtype": "Column Break"
   },
@@ -299,6 +314,7 @@
   {
    "fieldname": "base_price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate (Company Currency)",
    "options": "Company:company:default_currency",
    "print_hide": 1,
@@ -317,9 +333,12 @@
    "label": "Rate",
    "oldfieldname": "import_rate",
    "oldfieldtype": "Currency",
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1,
+   "precision": "5"
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "amount",
    "fieldtype": "Currency",
@@ -335,6 +354,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_rate",
    "fieldtype": "Currency",
    "label": "Rate (Company Currency)",
@@ -348,6 +368,7 @@
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_amount",
    "fieldtype": "Currency",
    "label": "Amount (Company Currency)",
@@ -374,6 +395,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "section_break_29",
    "fieldtype": "Section Break"
   },
@@ -386,6 +408,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "net_amount",
    "fieldtype": "Currency",
    "label": "Net Amount",
@@ -398,6 +421,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_net_rate",
    "fieldtype": "Currency",
    "label": "Net Rate (Company Currency)",
@@ -406,6 +430,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_net_amount",
    "fieldtype": "Currency",
    "label": "Net Amount (Company Currency)",
@@ -449,6 +474,7 @@
    "label": "Warehouse Settings"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "warehouse",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -466,6 +492,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "material_request",
    "fieldtype": "Link",
    "label": "Material Request",
@@ -475,7 +502,6 @@
    "options": "Material Request",
    "print_hide": 1,
    "print_width": "120px",
-   "read_only": 1,
    "search_index": 1,
    "width": "120px"
   },
@@ -558,9 +584,9 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "item_group",
    "fieldtype": "Link",
-   "hidden": 1,
    "label": "Item Group",
    "oldfieldname": "item_group",
    "oldfieldtype": "Link",
@@ -603,6 +629,7 @@
    "label": "Billed, Received & Returned"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.uom != doc.stock_uom",
    "fieldname": "stock_qty",
    "fieldtype": "Float",
@@ -614,6 +641,7 @@
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "received_qty",
    "fieldname": "received_qty",
    "fieldtype": "Float",
@@ -621,10 +649,10 @@
    "no_copy": 1,
    "oldfieldname": "received_qty",
    "oldfieldtype": "Currency",
-   "print_hide": 1,
-   "read_only": 1
+   "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "returned_qty",
    "fieldname": "returned_qty",
    "fieldtype": "Float",
@@ -648,6 +676,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "description": "Tax detail table fetched from item master as a string and stored in this field.\nUsed for Taxes and Charges",
    "fieldname": "item_tax_rate",
    "fieldtype": "Code",
@@ -666,6 +695,7 @@
    "label": "Accounting Details"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "expense_account",
    "fieldtype": "Link",
    "label": "Expense Account",
@@ -673,6 +703,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "cost_center",
    "fieldtype": "Link",
    "label": "Cost Center",
@@ -691,6 +722,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "item_tax_template",
    "fieldtype": "Link",
    "label": "Item Tax Template",
@@ -752,6 +784,7 @@
    "label": "More Information"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval: doc.uom != doc.stock_uom",
    "fieldname": "stock_uom_rate",
    "fieldtype": "Currency",
@@ -777,6 +810,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "collapsible": 1,
    "collapsible_depends_on": "eval: doc.margin_type || doc.discount_amount",
    "fieldname": "discount_and_margin_section",
@@ -792,6 +826,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.margin_type && doc.price_list_rate",
    "fieldname": "margin_rate_or_amount",
    "fieldtype": "Float",
@@ -902,7 +937,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-11-29 16:47:41.364387",
+ "modified": "2025-08-28 17:57:02.957262",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Purchase Order Item",

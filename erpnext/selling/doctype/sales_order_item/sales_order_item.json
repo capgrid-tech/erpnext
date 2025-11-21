@@ -118,6 +118,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "customer_item_code",
    "fieldtype": "Data",
    "hidden": 1,
@@ -188,11 +189,13 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "quantity_and_rate",
    "fieldtype": "Section Break",
    "label": "Quantity and Rate"
   },
   {
+   "allow_on_submit": 1,
    "columns": 1,
    "fieldname": "qty",
    "fieldtype": "Float",
@@ -237,6 +240,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.uom != doc.stock_uom",
    "fieldname": "stock_qty",
    "fieldtype": "Float",
@@ -252,10 +256,12 @@
   {
    "fieldname": "price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate",
    "oldfieldname": "ref_rate",
    "oldfieldtype": "Currency",
    "options": "currency",
+   "precision": "5",
    "print_hide": 1,
    "print_width": "70px",
    "read_only": 1,
@@ -264,10 +270,12 @@
   {
    "fieldname": "base_price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate (Company Currency)",
    "oldfieldname": "base_ref_rate",
    "oldfieldtype": "Currency",
    "options": "Company:company:default_currency",
+   "precision": "5",
    "print_hide": 1,
    "print_width": "100px",
    "read_only": 1,
@@ -320,6 +328,7 @@
    "width": "70px"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "price_list_rate",
    "fieldname": "discount_amount",
    "fieldtype": "Currency",
@@ -350,10 +359,13 @@
    "oldfieldname": "export_rate",
    "oldfieldtype": "Currency",
    "options": "currency",
+   "permlevel": 1,
+   "precision": "5",
    "print_width": "100px",
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "amount",
    "fieldtype": "Currency",
@@ -371,18 +383,21 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_rate",
    "fieldtype": "Currency",
    "label": "Basic Rate (Company Currency)",
    "oldfieldname": "basic_rate",
    "oldfieldtype": "Currency",
    "options": "Company:company:default_currency",
+   "precision": "5",
    "print_hide": 1,
    "print_width": "100px",
    "read_only": 1,
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_amount",
    "fieldtype": "Currency",
    "label": "Amount (Company Currency)",
@@ -415,14 +430,17 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "net_rate",
    "fieldtype": "Currency",
    "label": "Net Rate",
    "options": "currency",
+   "precision": "5",
    "print_hide": 1,
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "net_amount",
    "fieldtype": "Currency",
    "label": "Net Amount",
@@ -435,14 +453,17 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_net_rate",
    "fieldtype": "Currency",
    "label": "Net Rate (Company Currency)",
    "options": "Company:company:default_currency",
+   "precision": "5",
    "print_hide": 1,
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_net_amount",
    "fieldtype": "Currency",
    "label": "Net Amount (Company Currency)",
@@ -507,6 +528,7 @@
    "label": "Warehouse and Reference"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.delivered_by_supplier!=1",
    "fieldname": "warehouse",
    "fieldtype": "Link",
@@ -531,6 +553,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "prevdoc_docname",
    "fieldtype": "Link",
    "label": "Quotation",
@@ -539,7 +562,6 @@
    "oldfieldtype": "Link",
    "options": "Quotation",
    "print_hide": 1,
-   "read_only": 1,
    "search_index": 1
   },
   {
@@ -574,11 +596,13 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "valuation_rate",
    "fieldtype": "Currency",
    "label": "Valuation Rate",
    "no_copy": 1,
    "options": "Company:company:default_currency",
+   "precision": "5",
    "print_hide": 1,
    "read_only": 1,
    "report_hide": 1
@@ -647,6 +671,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "delivered_qty",
    "fieldtype": "Float",
    "label": "Delivered Qty",
@@ -655,7 +680,6 @@
    "oldfieldtype": "Currency",
    "print_hide": 1,
    "print_width": "100px",
-   "read_only": 1,
    "width": "100px"
   },
   {
@@ -667,6 +691,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "returned_qty",
    "fieldname": "returned_qty",
    "fieldtype": "Float",
@@ -680,6 +705,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "item_tax_template",
    "fieldtype": "Link",
    "label": "Item Tax Template",
@@ -727,6 +753,7 @@
    "width": "50px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "item_tax_rate",
    "fieldtype": "Code",
    "hidden": 1,
@@ -738,6 +765,7 @@
    "report_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "description": "Used for Production Plan",
    "fieldname": "transaction_date",
    "fieldtype": "Date",
@@ -782,6 +810,7 @@
    "label": "Against Blanket Order"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "bom_no",
    "fieldtype": "Link",
    "label": "BOM No",
@@ -795,12 +824,14 @@
    "label": "Manufacturing Section"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval: doc.uom != doc.stock_uom",
    "fieldname": "stock_uom_rate",
    "fieldtype": "Currency",
    "label": "Rate of Stock UOM",
    "no_copy": 1,
    "options": "currency",
+   "precision": "5",
    "read_only": 1
   },
   {
@@ -865,7 +896,7 @@
  "idx": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-12-25 02:51:10.247569",
+ "modified": "2025-09-24 11:48:34.490903",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Sales Order Item",

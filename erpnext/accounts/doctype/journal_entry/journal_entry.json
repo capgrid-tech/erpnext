@@ -160,6 +160,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "cheque_no",
    "fieldtype": "Data",
    "in_global_search": 1,
@@ -182,6 +183,7 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "user_remark",
    "fieldtype": "Small Text",
    "label": "User Remark",
@@ -294,14 +296,14 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "remark",
    "fieldtype": "Small Text",
    "in_global_search": 1,
    "label": "Remark",
    "no_copy": 1,
    "oldfieldname": "remark",
-   "oldfieldtype": "Small Text",
-   "read_only": 1
+   "oldfieldtype": "Small Text"
   },
   {
    "fieldname": "paid_loan",
@@ -323,6 +325,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "bill_no",
    "fieldtype": "Data",
    "label": "Bill No",
@@ -539,7 +542,7 @@
  "idx": 176,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-03-01 14:58:59.286591",
+ "modified": "2024-03-28 17:32:17.484740",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Journal Entry",
@@ -589,5 +592,6 @@
  "sort_order": "DESC",
  "states": [],
  "title_field": "title",
- "track_changes": 1
+ "track_changes": 1,
+ "track_seen": 1
 }

@@ -1,22 +1,25 @@
 {
  "actions": [],
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "TASK-.YYYY.-.#####",
  "creation": "2013-01-29 19:25:50",
  "doctype": "DocType",
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
+  "type",
+  "department",
+  "company",
   "subject",
   "project",
   "issue",
-  "type",
-  "color",
   "is_group",
   "is_template",
   "column_break0",
   "status",
   "priority",
+  "color",
   "task_weight",
   "parent_task",
   "completed_by",
@@ -48,35 +51,29 @@
   "review_date",
   "closing_date",
   "column_break_22",
-  "department",
-  "company",
   "lft",
   "rgt",
-  "old_parent"
+  "old_parent",
+  "amended_from"
  ],
  "fields": [
   {
+   "allow_on_submit": 1,
    "fieldname": "subject",
-   "fieldtype": "Data",
-   "in_global_search": 1,
-   "in_standard_filter": 1,
+   "fieldtype": "Select",
    "label": "Subject",
-   "reqd": 1,
-   "search_index": 1
+   "options": "\nInvoice Cancel\nPR/PRET Cancel\nDraft Remove\nChallan Help\nSupplier Open\nLot Break\nBlock/Unblock\nCreate Sales Order\nERP ERROR/GAP\nFinance Report Analysis\nFOC Received Entry Help\nProforma Invoice\nInbound Help\nItem Code Amendment\nItem Code Creation\nNew Development Require\nNew Report Required\nOutbound Help\nPO Open for PR\nPO Open for PRET\nPrice Update In PO\nPrice Update In S.O.\nProcess Training\nQC Help\nReport Data Required\nSmall Development Require\nSO Open for Credit Note\nSO Open for Invoice\nStock Consume/Issue\nStock Transfer\nPO Update\nSO Update\nSupplier Details Update\nTransactional Error Support\nERP User Creation\nERP Access Modifications\nERP User Disable\nFreight Invoice\ncustomer details update",
+   "reqd": 1
   },
   {
    "bold": 1,
    "fieldname": "project",
    "fieldtype": "Link",
-   "in_global_search": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Project",
    "oldfieldname": "project",
    "oldfieldtype": "Link",
    "options": "Project",
-   "remember_last_selected_value": 1,
-   "search_index": 1
+   "remember_last_selected_value": 1
   },
   {
    "fieldname": "issue",
@@ -85,17 +82,22 @@
    "options": "Issue"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "type",
    "fieldtype": "Link",
+   "hidden": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Type",
-   "options": "Task Type"
+   "options": "Task Type",
+   "search_index": 1
   },
   {
    "bold": 1,
    "default": "0",
    "fieldname": "is_group",
    "fieldtype": "Check",
-   "in_list_view": 1,
    "label": "Is Group"
   },
   {
@@ -109,13 +111,11 @@
    "bold": 1,
    "fieldname": "status",
    "fieldtype": "Select",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
    "oldfieldname": "status",
    "oldfieldtype": "Select",
-   "options": "Open\nWorking\nPending Review\nOverdue\nTemplate\nCompleted\nCancelled"
+   "options": "Open\nWorking\nPending Review\nOverdue\nTemplate\nCompleted\nCancelled\nHold"
   },
   {
    "fieldname": "priority",
@@ -131,6 +131,7 @@
   {
    "fieldname": "color",
    "fieldtype": "Color",
+   "hidden": 1,
    "label": "Color"
   },
   {
@@ -193,7 +194,6 @@
    "default": "0",
    "fieldname": "is_milestone",
    "fieldtype": "Check",
-   "in_list_view": 1,
    "label": "Is Milestone"
   },
   {
@@ -317,7 +317,8 @@
   {
    "fieldname": "department",
    "fieldtype": "Link",
-   "label": "Department",
+   "hidden": 1,
+   "label": "Department To Work On This",
    "options": "Department"
   },
   {
@@ -382,14 +383,24 @@
    "fieldtype": "Date",
    "label": "Completed On",
    "mandatory_depends_on": "eval: doc.status == \"Completed\""
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Task",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "icon": "fa fa-check",
  "idx": 1,
+ "is_submittable": 1,
  "is_tree": 1,
  "links": [],
  "max_attachments": 5,
- "modified": "2022-06-23 16:58:47.005241",
+ "modified": "2025-09-27 10:26:17.071380",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Task",
@@ -401,10 +412,24 @@
    "create": 1,
    "delete": 1,
    "email": 1,
+   "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Projects User",
+   "role": "System Manager",
+   "select": 1,
+   "set_user_permissions": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "ERP User",
    "share": 1,
    "write": 1
   }
@@ -417,5 +442,6 @@
  "states": [],
  "timeline_field": "project",
  "title_field": "subject",
+ "track_changes": 1,
  "track_seen": 1
 }

@@ -1,11 +1,6 @@
 {
- "charts": [
-  {
-   "chart_name": "Territory Wise Sales",
-   "label": "Territory Wise Sales"
-  }
- ],
- "content": "[{\"type\":\"chart\",\"data\":{\"chart_name\":\"Territory Wise Sales\",\"col\":12}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lead\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Opportunity\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Analytics\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Sales Pipeline\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Campaign\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance\",\"col\":4}}]",
+ "charts": [],
+ "content": "[{\"id\":\"28Z5x8OcJn\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>CRM Reports</b></span>\",\"col\":12}},{\"id\":\"dNjnpr0III\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pipeline Leads Summary\",\"col\":3}},{\"id\":\"_7HyJBiWnf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lead Progress\",\"col\":3}},{\"id\":\"WgbpuUd73V\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lead Details\",\"col\":3}},{\"id\":\"FEXJpdIkqt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>CRM Inputs</b></span>\",\"col\":12}},{\"id\":\"zA7ASkae3m\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Maintain Your Leads Here\",\"col\":5}},{\"id\":\"elH2_AJkG1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"uWSem5-UB2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"JeWjTdtiXd\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":10}},{\"id\":\"PST7AExaJf\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Pipeline\",\"col\":4}},{\"id\":\"JO7-FPisQy\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"r__pz3FED2\",\"type\":\"card\",\"data\":{\"card_name\":\"Campaign\",\"col\":4}},{\"id\":\"w7MBqAMIbA\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"WBP3TjXb1U\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance\",\"col\":4}}]",
  "creation": "2020-01-23 14:48:30.183272",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -13,6 +8,7 @@
  "hide_custom": 0,
  "icon": "crm",
  "idx": 0,
+ "is_hidden": 0,
  "label": "CRM",
  "links": [
   {
@@ -448,48 +444,52 @@
    "type": "Link"
   }
  ],
- "modified": "2022-07-22 15:03:30.755417",
- "modified_by": "Administrator",
+ "modified": "2025-04-17 14:35:51.633528",
+ "modified_by": "erp@capgridsolutions.com",
  "module": "CRM",
  "name": "CRM",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
  "restrict_to_domain": "",
  "roles": [],
- "sequence_id": 7.0,
+ "sequence_id": 8.0,
  "shortcuts": [
   {
-   "color": "Blue",
-   "format": "{} Open",
-   "label": "Lead",
-   "link_to": "Lead",
-   "stats_filter": "{\"status\":\"Open\"}",
-   "type": "DocType"
-  },
-  {
-   "color": "Blue",
-   "format": "{} Assigned",
-   "label": "Opportunity",
-   "link_to": "Opportunity",
-   "stats_filter": "{\"_assign\": [\"like\", '%' + frappe.session.user + '%']}",
-   "type": "DocType"
-  },
-  {
-   "label": "Customer",
-   "link_to": "Customer",
-   "type": "DocType"
-  },
-  {
-   "label": "Sales Analytics",
-   "link_to": "Sales Analytics",
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Pipeline Leads Summary",
+   "link_to": "Pipeline Leads Summary",
    "type": "Report"
   },
   {
    "label": "Dashboard",
    "link_to": "CRM",
    "type": "Dashboard"
+  },
+  {
+   "color": "Blue",
+   "format": "{} Open",
+   "label": "Maintain Your Leads Here",
+   "link_to": "Lead",
+   "stats_filter": "{\"status\":[\"=\",null]}",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Lead Progress",
+   "link_to": "Lead Progress",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Lead Details",
+   "link_to": "Lead Details",
+   "type": "Report"
   }
  ],
  "title": "CRM"

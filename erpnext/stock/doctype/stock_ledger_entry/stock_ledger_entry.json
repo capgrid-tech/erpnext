@@ -99,6 +99,7 @@
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "posting_time",
    "fieldtype": "Time",
    "label": "Posting Time",
@@ -146,6 +147,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "actual_qty",
    "fieldtype": "Float",
    "in_filter": 1,
@@ -158,16 +160,17 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "incoming_rate",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Incoming Rate",
    "oldfieldname": "incoming_rate",
    "oldfieldtype": "Currency",
-   "options": "Company:company:default_currency",
-   "read_only": 1
+   "options": "Company:company:default_currency"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "outgoing_rate",
    "fieldtype": "Currency",
    "label": "Outgoing Rate",
@@ -186,6 +189,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "qty_after_transaction",
    "fieldtype": "Float",
    "in_filter": 1,
@@ -197,6 +201,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "valuation_rate",
    "fieldtype": "Currency",
    "label": "Valuation Rate",
@@ -204,10 +209,10 @@
    "oldfieldtype": "Currency",
    "options": "Company:company:default_currency",
    "print_width": "150px",
-   "read_only": 1,
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "stock_value",
    "fieldtype": "Currency",
    "label": "Balance Stock Value",
@@ -217,6 +222,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "stock_value_difference",
    "fieldtype": "Currency",
    "label": "Change in Stock Value",
@@ -224,6 +230,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "stock_queue",
    "fieldtype": "Text",
    "label": "FIFO Stock Queue (qty, rate)",
@@ -306,9 +313,7 @@
    "default": "0",
    "fieldname": "recalculate_rate",
    "fieldtype": "Check",
-   "label": "Recalculate Incoming/Outgoing Rate",
-   "no_copy": 1,
-   "read_only": 1
+   "label": "Recalculate Incoming/Outgoing Rate"
   }
  ],
  "hide_toolbar": 1,
@@ -317,7 +322,7 @@
  "in_create": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-12-21 06:25:30.040801",
+ "modified": "2024-01-28 21:52:12.091744",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Ledger Entry",

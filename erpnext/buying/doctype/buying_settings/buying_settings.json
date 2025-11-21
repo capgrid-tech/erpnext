@@ -13,6 +13,8 @@
   "column_break_4",
   "maintain_same_rate_action",
   "role_to_override_stop_action",
+  "pr_get_item_button",
+  "putaway_month",
   "transaction_settings_section",
   "po_required",
   "pr_required",
@@ -164,6 +166,17 @@
    "fieldname": "over_order_allowance",
    "fieldtype": "Float",
    "label": "Over Order Allowance (%)"
+  },
+  {
+   "default": "0",
+   "fieldname": "pr_get_item_button",
+   "fieldtype": "Check",
+   "label": "pr_get_item_button"
+  },
+  {
+   "fieldname": "putaway_month",
+   "fieldtype": "Date",
+   "label": "Putaway Month"
   }
  ],
  "icon": "fa fa-cog",
@@ -171,7 +184,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-03-02 17:02:14.404622",
+ "modified": "2024-12-24 09:44:06.700117",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Buying Settings",

@@ -28,6 +28,7 @@
  ],
  "fields": [
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "payment_term",
    "fieldtype": "Link",
@@ -46,14 +47,15 @@
    "label": "Description"
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "due_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "Due Date",
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "invoice_portion",
    "fieldtype": "Percent",
@@ -62,13 +64,13 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "payment_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Payment Amount",
-   "options": "currency",
-   "reqd": 1
+   "options": "currency"
   },
   {
    "fieldname": "mode_of_payment",
@@ -96,12 +98,12 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fetch_from": "payment_amount",
    "fieldname": "outstanding",
    "fieldtype": "Currency",
    "label": "Outstanding",
-   "options": "currency",
-   "read_only": 1
+   "options": "currency"
   },
   {
    "fieldname": "column_break_5",
@@ -133,6 +135,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "collapsible": 1,
    "fieldname": "section_break_15",
    "fieldtype": "Section Break",
@@ -151,6 +154,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_payment_amount",
    "fieldtype": "Currency",
    "label": "Payment Amount (Company Currency)",
@@ -160,7 +164,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-09-16 13:57:06.382859",
+ "modified": "2024-12-24 16:00:52.303024",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Payment Schedule",

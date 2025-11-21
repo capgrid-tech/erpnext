@@ -589,10 +589,10 @@ def validate_due_date(
 						date_diff(due_date, default_due_date)
 					)
 				)
-			else:
-				frappe.throw(
-					_("Due / Reference Date cannot be after {0}").format(formatdate(default_due_date))
-				)
+#			else:
+#				frappe.throw(
+#					_("Due / Reference Date cannot be after {0}").format(formatdate(default_due_date))
+#				)
 
 
 @frappe.whitelist()

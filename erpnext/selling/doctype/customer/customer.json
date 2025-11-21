@@ -178,7 +178,6 @@
    "oldfieldname": "customer_group",
    "oldfieldtype": "Link",
    "options": "Customer Group",
-   "reqd": 1,
    "search_index": 1
   },
   {
@@ -190,8 +189,7 @@
    "oldfieldname": "territory",
    "oldfieldtype": "Link",
    "options": "Territory",
-   "print_hide": 1,
-   "reqd": 1
+   "print_hide": 1
   },
   {
    "fieldname": "tax_id",
@@ -568,7 +566,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2022-11-08 15:52:34.462657",
+ "modified": "2025-09-09 10:49:59.398838",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",

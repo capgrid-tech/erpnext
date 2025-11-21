@@ -27,6 +27,7 @@
   "allow_negative_stock",
   "show_barcode_field",
   "clean_description_html",
+  "apply_lot_break_rule",
   "quality_inspection_settings_section",
   "action_if_quality_inspection_is_not_submitted",
   "column_break_23",
@@ -141,7 +142,8 @@
    "default": "0",
    "fieldname": "allow_negative_stock",
    "fieldtype": "Check",
-   "label": "Allow Negative Stock"
+   "label": "Allow Negative Stock",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_10",
@@ -339,6 +341,12 @@
   {
    "fieldname": "column_break_121",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "apply_lot_break_rule",
+   "fieldtype": "Check",
+   "label": "apply_lot_break_rule"
   }
  ],
  "icon": "icon-cog",
@@ -346,7 +354,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-02-05 15:33:43.692736",
+ "modified": "2025-04-07 13:26:16.926600",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Settings",

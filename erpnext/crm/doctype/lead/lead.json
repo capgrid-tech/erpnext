@@ -37,6 +37,7 @@
   "organization_section",
   "company_name",
   "no_of_employees",
+  "sub_segment",
   "column_break_28",
   "annual_revenue",
   "industry",
@@ -75,7 +76,8 @@
   "notes_tab",
   "notes_html",
   "notes",
-  "dashboard_tab"
+  "dashboard_tab",
+  "amended_from"
  ],
  "fields": [
   {
@@ -143,7 +145,7 @@
    "no_copy": 1,
    "oldfieldname": "status",
    "oldfieldtype": "Select",
-   "options": "Lead\nOpen\nReplied\nOpportunity\nQuotation\nLost Quotation\nInterested\nConverted\nDo Not Contact",
+   "options": "Lead Created & POC Identified\nInitial Contact Scheduled\nMeeting Scheduled\nMeetings Conducted\nDemo Delivered & Value Proposition Established\nProposal Sent & Negotiations Ongoing\nRFQ in Progress\nContract Under Review\nContract Signed\nBusiness Initiated\nOn Hold\nLead\nOpen\nReplied\nOpportunity\nQuotation\nLost Quotation\nInterested\nConverted\nDo Not Contact",
    "reqd": 1,
    "search_index": 1
   },
@@ -428,7 +430,7 @@
   {
    "fieldname": "annual_revenue",
    "fieldtype": "Currency",
-   "label": "Annual Revenue"
+   "label": "Annual Revenue (CR.)"
   },
   {
    "depends_on": "eval:!doc.__islocal",
@@ -508,13 +510,28 @@
    "fieldtype": "Tab Break",
    "label": "Connections",
    "show_dashboard": 1
+  },
+  {
+   "fieldname": "sub_segment",
+   "fieldtype": "Link",
+   "label": "Sub Segment",
+   "options": "Sub-Segment"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Lead",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "icon": "fa fa-user",
  "idx": 5,
  "image_field": "image",
  "links": [],
- "modified": "2022-10-13 12:42:04.277879",
+ "modified": "2025-04-15 13:38:20.396533",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Lead",
@@ -553,11 +570,15 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "email": 1,
+   "export": 1,
+   "import": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
    "write": 1
   },

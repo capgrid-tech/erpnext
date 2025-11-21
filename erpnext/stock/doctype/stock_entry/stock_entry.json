@@ -97,6 +97,7 @@
    "set_only_once": 1
   },
   {
+   "default": "Send to Subcontractor",
    "fieldname": "stock_entry_type",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -123,7 +124,7 @@
    "label": "Purpose",
    "oldfieldname": "purpose",
    "oldfieldtype": "Select",
-   "options": "Material Issue\nMaterial Receipt\nMaterial Transfer\nMaterial Transfer for Manufacture\nMaterial Consumption for Manufacture\nManufacture\nRepack\nSend to Subcontractor",
+   "options": "Material Issue\nMaterial Receipt\nMaterial Transfer\nMaterial Transfer for Manufacture\nMaterial Consumption for Manufacture\nManufacture\nSend to Subcontractor",
    "read_only": 1
   },
   {
@@ -149,14 +150,12 @@
    "search_index": 1
   },
   {
-   "depends_on": "eval:doc.purpose==\"Send to Subcontractor\"",
    "fieldname": "purchase_order",
    "fieldtype": "Link",
    "label": "Purchase Order",
    "options": "Purchase Order"
   },
   {
-   "depends_on": "eval:doc.purpose==\"Send to Subcontractor\"",
    "fieldname": "subcontracting_order",
    "fieldtype": "Link",
    "label": "Subcontracting Order",
@@ -350,6 +349,7 @@
   },
   {
    "allow_bulk_edit": 1,
+   "allow_on_submit": 1,
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
@@ -372,6 +372,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_incoming_value",
    "fieldtype": "Currency",
    "label": "Total Incoming Value (Receipt)",
@@ -384,6 +385,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_outgoing_value",
    "fieldtype": "Currency",
    "label": "Total Outgoing Value (Consumption)",
@@ -392,6 +394,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "value_difference",
    "fieldtype": "Currency",
    "label": "Total Value Difference (Incoming - Outgoing)",
@@ -409,26 +412,16 @@
   {
    "fieldname": "additional_costs",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Additional Costs",
    "options": "Landed Cost Taxes and Charges"
   },
   {
-   "fieldname": "total_additional_costs",
-   "fieldtype": "Currency",
-   "label": "Total Additional Costs",
-   "options": "Company:company:default_currency",
-   "print_hide_if_no_value": 1,
-   "read_only": 1
-  },
-  {
-   "collapsible": 1,
-   "depends_on": "eval:doc.purpose === \"Send to Subcontractor\"",
    "fieldname": "contact_section",
    "fieldtype": "Section Break",
-   "label": "Supplier Details"
+   "label": "Supplier Details-"
   },
   {
-   "depends_on": "eval:doc.purpose === \"Send to Subcontractor\"",
    "fieldname": "supplier",
    "fieldtype": "Link",
    "label": "Supplier",
@@ -440,7 +433,6 @@
   },
   {
    "bold": 1,
-   "depends_on": "eval:doc.purpose === \"Send to Subcontractor\"",
    "fieldname": "supplier_name",
    "fieldtype": "Data",
    "label": "Supplier Name",
@@ -450,7 +442,6 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval:doc.purpose === \"Send to Subcontractor\"",
    "fieldname": "supplier_address",
    "fieldtype": "Link",
    "label": "Supplier Address",
@@ -617,7 +608,6 @@
    "label": "BOM Info"
   },
   {
-   "collapsible": 1,
    "fieldname": "section_break_jwgn",
    "fieldtype": "Section Break",
    "label": "Default Warehouse"
@@ -667,6 +657,15 @@
    "fieldname": "items_section",
    "fieldtype": "Section Break",
    "label": "Items"
+  },
+  {
+   "fieldname": "total_additional_costs",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Total Additional Costs",
+   "options": "Company:company:default_currency",
+   "print_hide_if_no_value": 1,
+   "read_only": 1
   }
  ],
  "icon": "fa fa-file-text",
@@ -674,7 +673,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-06 12:42:56.673180",
+ "modified": "2025-02-18 15:36:54.454502",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Entry",

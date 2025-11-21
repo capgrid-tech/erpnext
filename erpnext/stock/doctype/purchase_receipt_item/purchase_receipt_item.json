@@ -17,6 +17,7 @@
   "item_name",
   "section_break_4",
   "description",
+  "related_primary_customer",
   "brand",
   "image_column",
   "item_group",
@@ -210,7 +211,6 @@
    "oldfieldtype": "Currency",
    "print_hide": 1,
    "print_width": "100px",
-   "read_only": 1,
    "reqd": 1,
    "width": "100px"
   },
@@ -302,9 +302,12 @@
   {
    "fieldname": "price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate",
    "options": "currency",
-   "print_hide": 1
+   "precision": "4",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "depends_on": "price_list_rate",
@@ -327,8 +330,10 @@
   {
    "fieldname": "base_price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate (Company Currency)",
    "options": "Company:company:default_currency",
+   "precision": "4",
    "print_hide": 1,
    "read_only": 1
   },
@@ -338,7 +343,6 @@
   },
   {
    "bold": 1,
-   "columns": 2,
    "fieldname": "rate",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -346,7 +350,9 @@
    "oldfieldname": "import_rate",
    "oldfieldtype": "Currency",
    "options": "currency",
+   "precision": "5",
    "print_width": "100px",
+   "read_only": 1,
    "width": "100px"
   },
   {
@@ -356,8 +362,7 @@
    "label": "Amount",
    "oldfieldname": "import_amount",
    "oldfieldtype": "Currency",
-   "options": "currency",
-   "read_only": 1
+   "options": "currency"
   },
   {
    "fieldname": "col_break4",
@@ -370,9 +375,9 @@
    "oldfieldname": "purchase_rate",
    "oldfieldtype": "Currency",
    "options": "Company:company:default_currency",
+   "precision": "5",
    "print_hide": 1,
    "print_width": "100px",
-   "read_only": 1,
    "reqd": 1,
    "width": "100px"
   },
@@ -385,7 +390,6 @@
    "options": "Company:company:default_currency",
    "print_hide": 1,
    "print_width": "100px",
-   "read_only": 1,
    "width": "100px"
   },
   {
@@ -537,7 +541,6 @@
    "oldfieldtype": "Link",
    "options": "Purchase Order",
    "print_width": "150px",
-   "read_only": 1,
    "search_index": 1,
    "width": "150px"
   },
@@ -613,7 +616,6 @@
   },
   {
    "default": ":Company",
-   "depends_on": "eval:cint(erpnext.is_perpetual_inventory_enabled(parent.company))",
    "fieldname": "cost_center",
    "fieldtype": "Link",
    "label": "Cost Center",
@@ -676,7 +678,6 @@
    "read_only": 1
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "landed_cost_voucher_amount",
    "fieldtype": "Currency",
    "label": "Landed Cost Voucher Amount",
@@ -779,11 +780,11 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "material_request",
    "fieldtype": "Link",
    "label": "Material Request",
-   "options": "Material Request",
-   "read_only": 1
+   "options": "Material Request"
   },
   {
    "fieldname": "material_request_item",
@@ -960,7 +961,8 @@
    "fieldname": "base_rate_with_margin",
    "fieldtype": "Currency",
    "label": "Rate With Margin (Company Currency)",
-   "options": "Company:company:default_currency"
+   "options": "Company:company:default_currency",
+   "read_only": 1
   },
   {
    "fieldname": "purchase_invoice",
@@ -1016,12 +1018,18 @@
    "no_copy": 1,
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.customer1_name",
+   "fieldname": "related_primary_customer",
+   "fieldtype": "Data",
+   "label": "Related Primary Customer"
   }
  ],
  "idx": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-02-28 15:43:04.470104",
+ "modified": "2025-08-11 17:47:32.544562",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Purchase Receipt Item",
@@ -1029,6 +1037,7 @@
  "owner": "Administrator",
  "permissions": [],
  "quick_entry": 1,
+ "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

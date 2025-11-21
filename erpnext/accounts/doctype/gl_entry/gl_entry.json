@@ -54,6 +54,7 @@
    "oldfieldtype": "Date"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "account",
    "fieldtype": "Link",
    "in_filter": 1,
@@ -81,6 +82,7 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "cost_center",
    "fieldtype": "Link",
    "in_filter": 1,
@@ -91,20 +93,24 @@
    "options": "Cost Center"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "debit",
    "fieldtype": "Currency",
    "label": "Debit Amount",
    "oldfieldname": "debit",
    "oldfieldtype": "Currency",
-   "options": "Company:company:default_currency"
+   "options": "Company:company:default_currency",
+   "precision": "4"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "credit",
    "fieldtype": "Currency",
    "label": "Credit Amount",
    "oldfieldname": "credit",
    "oldfieldtype": "Currency",
-   "options": "Company:company:default_currency"
+   "options": "Company:company:default_currency",
+   "precision": "4"
   },
   {
    "fieldname": "account_currency",
@@ -113,18 +119,23 @@
    "options": "Currency"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "debit_in_account_currency",
    "fieldtype": "Currency",
    "label": "Debit Amount in Account Currency",
-   "options": "account_currency"
+   "options": "account_currency",
+   "precision": "4"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "credit_in_account_currency",
    "fieldtype": "Currency",
    "label": "Credit Amount in Account Currency",
-   "options": "account_currency"
+   "options": "account_currency",
+   "precision": "4"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "against",
    "fieldtype": "Text",
    "in_filter": 1,
@@ -133,6 +144,7 @@
    "oldfieldtype": "Text"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "against_voucher_type",
    "fieldtype": "Link",
    "label": "Against Voucher Type",
@@ -142,6 +154,7 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "against_voucher",
    "fieldtype": "Dynamic Link",
    "in_filter": 1,
@@ -220,6 +233,7 @@
    "options": "Fiscal Year"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company",
    "fieldtype": "Link",
    "in_filter": 1,
@@ -258,10 +272,12 @@
  "icon": "fa fa-list",
  "idx": 1,
  "in_create": 1,
- "modified": "2020-04-07 16:22:33.766994",
+ "links": [],
+ "modified": "2025-10-29 12:06:55.249733",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "GL Entry",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -290,5 +306,6 @@
  "quick_entry": 1,
  "search_fields": "voucher_no,account,posting_date,against_voucher",
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

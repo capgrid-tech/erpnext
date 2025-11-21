@@ -1,10 +1,12 @@
 {
- "autoname": "ACC-SHT-.YYYY.-.#####",
+ "actions": [],
+ "autoname": "naming_series:",
  "creation": "2017-12-25 17:18:03.143726",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "naming_series",
   "transfer_type",
   "column_break_1",
   "date",
@@ -185,13 +187,21 @@
   {
    "fieldname": "column_break_12",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "naming series",
+   "options": "SH-TR/23-24/"
   }
  ],
  "is_submittable": 1,
- "modified": "2019-12-20 14:48:01.990600",
+ "links": [],
+ "modified": "2023-04-25 15:51:26.926835",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Share Transfer",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -238,5 +248,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

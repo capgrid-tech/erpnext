@@ -51,8 +51,7 @@
    "label": "Parent Cost Center",
    "oldfieldname": "parent_cost_center",
    "oldfieldtype": "Link",
-   "options": "Cost Center",
-   "reqd": 1
+   "options": "Cost Center"
   },
   {
    "fieldname": "company",
@@ -125,7 +124,7 @@
  "idx": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2022-01-31 13:22:58.916273",
+ "modified": "2023-07-14 15:35:13.826923",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Cost Center",

@@ -70,8 +70,7 @@
    "fieldname": "outstanding_amount",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Outstanding",
-   "read_only": 1
+   "label": "Outstanding"
   },
   {
    "columns": 2,
@@ -106,7 +105,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-12-12 12:31:44.919895",
+ "modified": "2023-11-28 10:08:58.323890",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Payment Entry Reference",
