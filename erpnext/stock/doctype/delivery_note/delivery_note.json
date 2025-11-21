@@ -284,8 +284,7 @@
    "fieldtype": "Check",
    "label": "Is Return",
    "no_copy": 1,
-   "print_hide": 1,
-   "read_only": 1
+   "print_hide": 1
   },
   {
    "default": "0",

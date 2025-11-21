@@ -740,11 +740,13 @@
    "width": "200px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_schedule_section",
    "fieldtype": "Section Break",
    "label": "Payment Terms"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_terms_template",
    "fieldtype": "Link",
    "label": "Payment Terms Template",
@@ -752,6 +754,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_schedule",
    "fieldtype": "Table",
    "label": "Payment Schedule",
@@ -958,16 +961,17 @@
    "options": "Competitor Detail"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company_address",
    "fieldtype": "Link",
    "label": "Company Address Name",
    "options": "Address"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company_address_display",
    "fieldtype": "Small Text",
-   "label": "Company Address",
-   "read_only": 1
+   "label": "Company Address"
   },
   {
    "fieldname": "scan_barcode",
@@ -1029,6 +1033,7 @@
    "label": "Company Address"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "column_break_87",
    "fieldtype": "Column Break"
   },

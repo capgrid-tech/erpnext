@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_import": 1,
- "creation": "2023-05-29 13:02:17.121296",
+ "allow_rename": 1,
+ "creation": "2013-03-07 18:50:32",
  "description": "A logical Warehouse against which stock entries are made.",
  "doctype": "DocType",
  "document_type": "Setup",
@@ -72,8 +73,6 @@
    "oldfieldname": "company",
    "oldfieldtype": "Link",
    "options": "Company",
-   "read_only_depends_on": "eval: !doc.__islocal",
-   "remember_last_selected_value": 1,
    "reqd": 1,
    "search_index": 1
   },

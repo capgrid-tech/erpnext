@@ -65,7 +65,8 @@
    "fieldname": "expected_value_after_useful_life",
    "fieldtype": "Currency",
    "label": "Expected Value After Useful Life",
-   "options": "Company:company:default_currency"
+   "options": "Company:company:default_currency",
+   "reqd": 1
   },
   {
    "fieldname": "value_after_depreciation",

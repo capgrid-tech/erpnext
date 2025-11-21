@@ -252,6 +252,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "due_date",
    "fieldtype": "Date",
    "label": "Due Date",
@@ -350,6 +351,7 @@
    "label": "Hold Invoice"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "on_hold",
    "fieldtype": "Check",
@@ -381,6 +383,7 @@
    "label": "Supplier Invoice"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "bill_no",
    "fieldtype": "Data",
    "label": "Supplier Invoice No",
@@ -1122,6 +1125,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "collapsible_depends_on": "eval:(!doc.is_return)",
    "fieldname": "payment_schedule_section",
    "fieldtype": "Section Break",
@@ -1281,6 +1285,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks",
@@ -1489,8 +1494,7 @@
    "fieldtype": "Table",
    "label": "Tax Withheld Vouchers",
    "no_copy": 1,
-   "options": "Tax Withheld Vouchers",
-   "read_only": 1
+   "options": "Tax Withheld Vouchers"
   },
   {
    "fieldname": "payments_tab",
@@ -1675,5 +1679,6 @@
  "states": [],
  "timeline_field": "supplier",
  "title_field": "title",
- "track_changes": 1
+ "track_changes": 1,
+ "track_seen": 1
 }

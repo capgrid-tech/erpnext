@@ -183,7 +183,7 @@
    "no_copy": 1,
    "oldfieldname": "naming_series",
    "oldfieldtype": "Select",
-   "options": "PUR-ORD-.YYYY.-",
+   "options": "PO2425CGRP\nPO2425CGOP\nPO2425CGSP\nPO2425CGPL\nPO2425CGIMP\nPO2526CGRP\nPO2526CGOP\nPO2526CGSP\nPO2526CGPL\nPO2526CGIMP",
    "print_hide": 1,
    "reqd": 1,
    "set_only_once": 1
@@ -281,25 +281,27 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.customer",
    "fieldname": "drop_ship",
    "fieldtype": "Tab Break",
    "label": "Drop Ship"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
-   "options": "Customer",
-   "read_only": 1
+   "options": "Customer"
   },
   {
+   "allow_on_submit": 1,
    "bold": 1,
+   "fetch_from": "customer.customer_name",
    "fieldname": "customer_name",
    "fieldtype": "Data",
    "label": "Customer Name",
-   "print_hide": 1,
-   "read_only": 1
+   "print_hide": 1
   },
   {
    "fieldname": "column_break_19",
@@ -345,6 +347,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_person",
    "fieldtype": "Link",
    "label": "Supplier Contact",
@@ -358,6 +361,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_display",
    "fieldtype": "Small Text",
    "in_global_search": 1,
@@ -365,12 +369,14 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_mobile",
    "fieldtype": "Small Text",
    "label": "Contact Mobile No",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_email",
    "fieldtype": "Small Text",
    "label": "Contact Email",
@@ -383,6 +389,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shipping_address",
    "fieldtype": "Link",
    "label": "Shipping Address",
@@ -390,6 +397,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shipping_address_display",
    "fieldtype": "Small Text",
    "label": "Shipping Address Details",
@@ -458,6 +466,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "set_warehouse",
    "fieldtype": "Link",
    "label": "Set Target Warehouse",
@@ -480,6 +489,7 @@
    "options": "Warehouse"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "items_section",
    "fieldtype": "Section Break",
    "hide_border": 1,
@@ -494,6 +504,7 @@
   },
   {
    "allow_bulk_edit": 1,
+   "allow_on_submit": 1,
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
@@ -537,12 +548,14 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_qty",
    "fieldtype": "Float",
    "label": "Total Quantity",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_total",
    "fieldtype": "Currency",
    "label": "Total (Company Currency)",
@@ -551,6 +564,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_net_total",
    "fieldtype": "Currency",
    "label": "Net Total (Company Currency)",
@@ -566,6 +580,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total",
    "fieldtype": "Currency",
    "label": "Total",
@@ -573,6 +588,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "net_total",
    "fieldtype": "Currency",
    "label": "Net Total",
@@ -591,6 +607,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "taxes_section",
    "fieldtype": "Section Break",
    "hide_border": 1,
@@ -599,6 +616,7 @@
    "options": "fa fa-money"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "taxes_and_charges",
    "fieldtype": "Link",
    "label": "Purchase Taxes and Charges Template",
@@ -624,6 +642,7 @@
    "hide_border": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "taxes",
    "fieldtype": "Table",
    "label": "Purchase Taxes and Charges",
@@ -632,12 +651,14 @@
    "options": "Purchase Taxes and Charges"
   },
   {
+   "allow_on_submit": 1,
    "collapsible": 1,
    "fieldname": "sec_tax_breakup",
    "fieldtype": "Section Break",
    "label": "Tax Breakup"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "other_charges_calculation",
    "fieldtype": "Text Editor",
    "label": "Taxes and Charges Calculation",
@@ -653,6 +674,7 @@
    "options": "fa fa-money"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "base_taxes_and_charges_added",
    "fieldname": "base_taxes_and_charges_added",
    "fieldtype": "Currency",
@@ -664,6 +686,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "base_taxes_and_charges_deducted",
    "fieldname": "base_taxes_and_charges_deducted",
    "fieldtype": "Currency",
@@ -675,6 +698,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "base_total_taxes_and_charges",
    "fieldname": "base_total_taxes_and_charges",
    "fieldtype": "Currency",
@@ -691,6 +715,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "taxes_and_charges_added",
    "fieldname": "taxes_and_charges_added",
    "fieldtype": "Currency",
@@ -702,6 +727,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "taxes_and_charges_deducted",
    "fieldname": "taxes_and_charges_deducted",
    "fieldtype": "Currency",
@@ -713,6 +739,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_taxes_and_charges",
    "fieldtype": "Currency",
    "label": "Total Taxes and Charges",
@@ -721,6 +748,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "collapsible": 1,
    "fieldname": "discount_section",
    "fieldtype": "Section Break",
@@ -735,6 +763,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_discount_amount",
    "fieldtype": "Currency",
    "label": "Additional Discount Amount (Company Currency)",
@@ -753,6 +782,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "discount_amount",
    "fieldtype": "Currency",
    "label": "Additional Discount Amount",
@@ -760,11 +790,13 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "totals_section",
    "fieldtype": "Section Break",
    "label": "Totals"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_grand_total",
    "fieldtype": "Currency",
    "label": "Grand Total (Company Currency)",
@@ -776,6 +808,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:!doc.disable_rounded_total",
    "fieldname": "base_rounding_adjustment",
    "fieldtype": "Currency",
@@ -786,6 +819,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_in_words",
    "fieldtype": "Data",
    "label": "In Words (Company Currency)",
@@ -796,6 +830,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_rounded_total",
    "fieldtype": "Currency",
    "label": "Rounded Total (Company Currency)",
@@ -806,11 +841,13 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "column_break4",
    "fieldtype": "Column Break",
    "oldfieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "grand_total",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -821,6 +858,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:!doc.disable_rounded_total",
    "fieldname": "rounding_adjustment",
    "fieldtype": "Currency",
@@ -831,6 +869,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "rounded_total",
    "fieldtype": "Currency",
    "label": "Rounded Total",
@@ -844,14 +883,14 @@
    "label": "Disable Rounded Total"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "in_words",
    "fieldtype": "Data",
    "label": "In Words",
    "length": 240,
    "oldfieldname": "in_words_import",
    "oldfieldtype": "Data",
-   "print_hide": 1,
-   "read_only": 1
+   "print_hide": 1
   },
   {
    "fieldname": "advance_paid",
@@ -868,12 +907,14 @@
    "label": "Payment Terms"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_terms_template",
    "fieldtype": "Link",
    "label": "Payment Terms Template",
    "options": "Payment Terms Template"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_schedule",
    "fieldtype": "Table",
    "label": "Payment Schedule",
@@ -890,6 +931,7 @@
    "options": "fa fa-legal"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "tc_name",
    "fieldtype": "Link",
    "label": "Terms",
@@ -899,6 +941,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "terms",
    "fieldtype": "Text Editor",
    "label": "Terms and Conditions",
@@ -1065,10 +1108,11 @@
    "label": "Update Auto Repeat Reference"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "tax_category",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Tax Category",
-   "options": "Tax Category"
+   "options": "\nOut-State (Purchase)\nIn-State (Purchase)"
   },
   {
    "depends_on": "supplied_items",
@@ -1088,18 +1132,21 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "billing_address",
    "fieldtype": "Link",
    "label": "Company Billing Address",
    "options": "Address"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "billing_address_display",
    "fieldtype": "Small Text",
    "label": "Billing Address Details",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "before_items_section",
    "fieldtype": "Section Break",
    "hide_border": 1
@@ -1145,6 +1192,7 @@
    "label": "Accounting Dimensions "
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "cost_center",
    "fieldtype": "Link",
    "label": "Cost Center",
@@ -1169,6 +1217,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "is_internal_supplier",
    "fieldname": "set_from_warehouse",
    "fieldtype": "Link",
@@ -1177,6 +1226,7 @@
    "options": "Warehouse"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "terms_tab",
    "fieldtype": "Tab Break",
    "label": "Terms"
@@ -1204,6 +1254,7 @@
    "label": "Address & Contact"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company_billing_address_section",
    "fieldtype": "Section Break",
    "label": "Company Billing Address"
@@ -1216,6 +1267,7 @@
    "oldfieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "depends_on": "apply_tds",
    "fieldname": "tax_withholding_net_total",
@@ -1227,6 +1279,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "apply_tds",
    "fieldname": "base_tax_withholding_net_total",
    "fieldtype": "Currency",
@@ -1246,6 +1299,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "incoterm",
    "fieldtype": "Link",
    "label": "Incoterm",
@@ -1258,6 +1312,7 @@
    "label": "Named Place"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shipping_address_section",
    "fieldtype": "Section Break",
    "label": "Shipping Address"
@@ -1273,7 +1328,7 @@
  "idx": 105,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-03-20 16:03:31.611808",
+ "modified": "2025-08-14 14:43:18.873729",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Purchase Order",

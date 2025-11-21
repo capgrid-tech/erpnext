@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "creation": "2022-05-09 19:35:03.334361",
  "doctype": "DocType",
@@ -95,6 +96,7 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -108,6 +110,7 @@
    "options": "Currency"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "amount_in_account_currency",
    "fieldtype": "Currency",
    "label": "Amount in Account Currency",
@@ -156,7 +159,6 @@
    "search_index": 1
   }
  ],
- "in_create": 1,
  "index_web_pages_for_search": 1,
  "links": [],
  "modified": "2023-11-08 10:53:10.664896",
@@ -191,6 +193,20 @@
    "report": 1,
    "role": "Auditor",
    "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
   }
  ],
  "search_fields": "voucher_no, against_voucher_no",

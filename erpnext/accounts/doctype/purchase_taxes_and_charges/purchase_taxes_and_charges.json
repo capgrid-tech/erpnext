@@ -135,6 +135,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "tax_amount",
    "fieldtype": "Currency",
@@ -145,6 +146,7 @@
    "options": "currency"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "tax_amount_after_discount_amount",
    "fieldtype": "Currency",
    "label": "Tax Amount After Discount Amount",
@@ -153,6 +155,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "total",
    "fieldtype": "Currency",
@@ -168,6 +171,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_tax_amount",
    "fieldtype": "Currency",
    "label": "Amount (Company Currency)",
@@ -176,6 +180,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_total",
    "fieldtype": "Currency",
    "hidden": 1,
@@ -184,6 +189,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_tax_amount_after_discount_amount",
    "fieldtype": "Currency",
    "label": "Tax Amount After Discount Amount",
@@ -192,6 +198,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "item_wise_tax_detail",
    "fieldtype": "Code",
    "hidden": 1,
@@ -234,9 +241,11 @@
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Purchase Taxes and Charges",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

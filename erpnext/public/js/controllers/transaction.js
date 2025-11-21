@@ -857,9 +857,9 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 				return frappe.call({
 					method: "erpnext.accounts.party.get_due_date",
 					args: {
-						"posting_date": me.frm.doc.posting_date,
+						"posting_date": me.frm.doc.prec_date || me.frm.doc.posting_date,
 						"party_type": me.frm.doc.doctype == "Sales Invoice" ? "Customer" : "Supplier",
-						"bill_date": me.frm.doc.bill_date,
+						"bill_date": me.frm.doc.prec_date || me.frm.doc.posting_date,
 						"party": me.frm.doc.doctype == "Sales Invoice" ? me.frm.doc.customer : me.frm.doc.supplier,
 						"company": me.frm.doc.company
 					},
@@ -929,7 +929,7 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 					} else {
 						frappe.model.set_value(
 							term.doctype, term.name, 'due_date',
-							doc.posting_date || doc.transaction_date
+							doc.prec_date || doc.posting_date || doc.transaction_date
 						);
 					}
 				}
@@ -2238,7 +2238,7 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 					posting_date: posting_date,
 					grand_total: doc.rounded_total || doc.grand_total,
 					base_grand_total: doc.base_rounded_total || doc.base_grand_total,
-					bill_date: doc.bill_date
+					bill_date: doc.prec_date || doc.posting_date
 				},
 				callback: function(r) {
 					if(r.message && !r.exc) {
@@ -2270,7 +2270,7 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 				method: "erpnext.controllers.accounts_controller.get_payment_term_details",
 				args: {
 					term: row.payment_term,
-					bill_date: this.frm.doc.bill_date,
+					bill_date: this.frm.doc.prec_date || this.frm.doc.posting_date,
 					posting_date: this.frm.doc.posting_date || this.frm.doc.transaction_date,
 					grand_total: this.frm.doc.rounded_total || this.frm.doc.grand_total,
 					base_grand_total: this.frm.doc.base_rounded_total || this.frm.doc.base_grand_total

@@ -571,7 +571,6 @@
    "label": "Is Customer Provided Item"
   },
   {
-   "depends_on": "eval:doc.is_customer_provided_item==1",
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",

@@ -51,7 +51,6 @@
    "oldfieldtype": "Data"
   },
   {
-   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "account_head",
    "fieldtype": "Link",
@@ -64,7 +63,6 @@
    "search_index": 1
   },
   {
-   "allow_on_submit": 1,
    "default": ":Company",
    "fieldname": "cost_center",
    "fieldtype": "Link",
@@ -104,6 +102,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "rate",
    "fieldtype": "Float",
@@ -117,14 +116,15 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "tax_amount",
    "fieldtype": "Currency",
-   "in_list_view": 1,
    "label": "Amount",
    "options": "currency"
   },
   {
+   "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "total",
    "fieldtype": "Currency",
@@ -134,6 +134,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "tax_amount_after_discount_amount",
    "fieldtype": "Currency",
    "label": "Tax Amount After Discount Amount",
@@ -141,10 +142,12 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "column_break_13",
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_tax_amount",
    "fieldtype": "Currency",
    "label": "Amount (Company Currency)",
@@ -154,6 +157,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_total",
    "fieldtype": "Currency",
    "label": "Total (Company Currency)",
@@ -163,6 +167,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:parent.discount_amount",
    "fieldname": "base_tax_amount_after_discount_amount",
    "fieldtype": "Currency",
@@ -171,6 +176,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "item_wise_tax_detail",
    "fieldtype": "Code",
    "hidden": 1,
@@ -200,12 +206,12 @@
    "default": "0",
    "fieldname": "dont_recompute_tax",
    "fieldtype": "Check",
-   "hidden": 1,
    "label": "Dont Recompute tax",
    "print_hide": 1,
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fetch_from": "account_head.account_currency",
    "fieldname": "account_currency",
    "fieldtype": "Link",

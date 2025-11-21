@@ -161,6 +161,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "cheque_no",
    "fieldtype": "Data",
    "in_global_search": 1,
@@ -183,6 +184,7 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "user_remark",
    "fieldtype": "Small Text",
    "label": "User Remark",
@@ -295,14 +297,14 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "remark",
    "fieldtype": "Small Text",
    "in_global_search": 1,
    "label": "Remark",
    "no_copy": 1,
    "oldfieldname": "remark",
-   "oldfieldtype": "Small Text",
-   "read_only": 1
+   "oldfieldtype": "Small Text"
   },
   {
    "fieldname": "paid_loan",
@@ -324,6 +326,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "bill_no",
    "fieldtype": "Data",
    "label": "Bill No",
@@ -607,5 +610,6 @@
  "sort_order": "DESC",
  "states": [],
  "title_field": "title",
- "track_changes": 1
+ "track_changes": 1,
+ "track_seen": 1
 }

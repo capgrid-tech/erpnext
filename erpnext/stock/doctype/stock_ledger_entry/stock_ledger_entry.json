@@ -100,6 +100,7 @@
    "width": "100px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "posting_time",
    "fieldtype": "Time",
    "label": "Posting Time",
@@ -147,6 +148,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "actual_qty",
    "fieldtype": "Float",
    "in_filter": 1,
@@ -159,16 +161,17 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "incoming_rate",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Incoming Rate",
    "oldfieldname": "incoming_rate",
    "oldfieldtype": "Currency",
-   "options": "Company:company:default_currency",
-   "read_only": 1
+   "options": "Company:company:default_currency"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "outgoing_rate",
    "fieldtype": "Currency",
    "label": "Outgoing Rate",
@@ -187,6 +190,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "qty_after_transaction",
    "fieldtype": "Float",
    "in_filter": 1,
@@ -198,6 +202,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "valuation_rate",
    "fieldtype": "Currency",
    "label": "Valuation Rate",
@@ -205,10 +210,10 @@
    "oldfieldtype": "Currency",
    "options": "Company:company:default_currency",
    "print_width": "150px",
-   "read_only": 1,
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "stock_value",
    "fieldtype": "Currency",
    "label": "Balance Stock Value",
@@ -218,6 +223,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "stock_value_difference",
    "fieldtype": "Currency",
    "label": "Change in Stock Value",
@@ -225,6 +231,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "stock_queue",
    "fieldtype": "Long Text",
    "label": "FIFO Stock Queue (qty, rate)",

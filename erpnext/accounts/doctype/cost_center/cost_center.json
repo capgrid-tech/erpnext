@@ -51,8 +51,7 @@
    "label": "Parent Cost Center",
    "oldfieldname": "parent_cost_center",
    "oldfieldtype": "Link",
-   "options": "Cost Center",
-   "reqd": 1
+   "options": "Cost Center"
   },
   {
    "fieldname": "company",

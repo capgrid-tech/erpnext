@@ -157,11 +157,13 @@
    "default": "Today",
    "fieldname": "transaction_date",
    "fieldtype": "Date",
-   "label": "Transaction Date",
+   "label": "Request Date",
    "no_copy": 1,
    "oldfieldname": "transaction_date",
    "oldfieldtype": "Date",
+   "options": "Today",
    "print_width": "100px",
+   "read_only": 1,
    "reqd": 1,
    "search_index": 1,
    "width": "100px"
@@ -174,6 +176,7 @@
    "width": "50%"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "in_standard_filter": 1,
@@ -184,7 +187,6 @@
    "options": "\nDraft\nSubmitted\nStopped\nCancelled\nPending\nPartially Ordered\nPartially Received\nOrdered\nIssued\nTransferred\nReceived",
    "print_hide": 1,
    "print_width": "100px",
-   "read_only": 1,
    "search_index": 1,
    "width": "100px"
   },
@@ -357,7 +359,7 @@
  "idx": 70,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-15 12:07:24.789471",
+ "modified": "2025-08-11 17:38:19.171509",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Material Request",

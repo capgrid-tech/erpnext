@@ -73,8 +73,7 @@
    "fieldname": "outstanding_amount",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Outstanding",
-   "read_only": 1
+   "label": "Outstanding"
   },
   {
    "columns": 2,

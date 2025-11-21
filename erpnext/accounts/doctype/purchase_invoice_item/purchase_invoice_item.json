@@ -243,6 +243,7 @@
   {
    "fieldname": "price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate",
    "options": "currency",
    "print_hide": 1
@@ -267,6 +268,7 @@
   {
    "fieldname": "base_price_list_rate",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Price List Rate (Company Currency)",
    "options": "Company:company:default_currency",
    "print_hide": 1,
@@ -286,6 +288,8 @@
    "oldfieldname": "import_rate",
    "oldfieldtype": "Currency",
    "options": "currency",
+   "permlevel": 1,
+   "precision": "4",
    "reqd": 1
   },
   {
@@ -311,8 +315,8 @@
    "oldfieldname": "rate",
    "oldfieldtype": "Currency",
    "options": "Company:company:default_currency",
+   "precision": "4",
    "print_hide": 1,
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -351,6 +355,7 @@
    "fieldtype": "Currency",
    "label": "Net Rate",
    "options": "currency",
+   "precision": "4",
    "print_hide": 1,
    "read_only": 1
   },
@@ -371,6 +376,7 @@
    "fieldtype": "Currency",
    "label": "Net Rate (Company Currency)",
    "options": "Company:company:default_currency",
+   "precision": "4",
    "print_hide": 1,
    "read_only": 1
   },
