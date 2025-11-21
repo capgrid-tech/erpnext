@@ -3,7 +3,7 @@
 
 import frappe
 from frappe import _
-from frappe.utils import add_months, cint, flt, getdate, time_diff_in_hours
+from frappe.utils import add_months, cint, flt, get_link_to_form, getdate, time_diff_in_hours
 
 import erpnext
 from erpnext.accounts.general_ledger import make_gl_entries
@@ -19,6 +19,20 @@ class AssetRepair(AccountsController):
 		if self.get("stock_items"):
 			self.set_stock_items_cost()
 		self.calculate_total_repair_cost()
+
+	def validate_asset(self):
+		if self.asset_doc.status in ("Sold", "Fully Depreciated", "Scrapped"):
+			frappe.throw(
+				_("Asset {0} is in {1} status and cannot be repaired.").format(
+					get_link_to_form("Asset", self.asset), self.asset_doc.status
+				)
+			)
+
+	def validate_dates(self):
+		if self.completion_date and (getdate(self.failure_date) > getdate(self.completion_date)):
+			frappe.throw(
+				_("Completion Date can not be before Failure Date. Please adjust the dates accordingly.")
+			)
 
 	def update_status(self):
 		if self.repair_status == "Pending":
@@ -46,6 +60,10 @@ class AssetRepair(AccountsController):
 
 			self.increase_asset_value()
 
+			if self.capitalize_repair_cost:
+				self.asset_doc.total_asset_cost += self.repair_cost
+				self.asset_doc.additional_asset_cost += self.repair_cost
+
 			if self.get("stock_consumption"):
 				self.check_for_stock_items_and_warehouse()
 				self.decrease_stock_quantity()
@@ -67,6 +85,10 @@ class AssetRepair(AccountsController):
 			self.asset_doc.flags.increase_in_asset_value_due_to_repair = True
 
 			self.decrease_asset_value()
+
+			if self.capitalize_repair_cost:
+				self.asset_doc.total_asset_cost -= self.repair_cost
+				self.asset_doc.additional_asset_cost -= self.repair_cost
 
 			if self.get("stock_consumption"):
 				self.increase_stock_quantity()
@@ -90,9 +112,7 @@ class AssetRepair(AccountsController):
 
 	def check_for_stock_items_and_warehouse(self):
 		if not self.get("stock_items"):
-			frappe.throw(
-				_("Please enter Stock Items consumed during the Repair."), title=_("Missing Items")
-			)
+			frappe.throw(_("Please enter Stock Items consumed during the Repair."), title=_("Missing Items"))
 		if not self.warehouse:
 			frappe.throw(
 				_("Please enter Warehouse from which Stock Items consumed during the Repair were taken."),
@@ -165,9 +185,7 @@ class AssetRepair(AccountsController):
 	def get_gl_entries(self):
 		gl_entries = []
 
-		fixed_asset_account = get_asset_account(
-			"fixed_asset_account", asset=self.asset, company=self.company
-		)
+		fixed_asset_account = get_asset_account("fixed_asset_account", asset=self.asset, company=self.company)
 		self.get_gl_entries_for_repair_cost(gl_entries, fixed_asset_account)
 		self.get_gl_entries_for_consumed_items(gl_entries, fixed_asset_account)
 
@@ -191,7 +209,7 @@ class AssetRepair(AccountsController):
 					"voucher_type": self.doctype,
 					"voucher_no": self.name,
 					"cost_center": self.cost_center,
-					"posting_date": getdate(),
+					"posting_date": self.completion_date,
 					"against_voucher_type": "Purchase Invoice",
 					"against_voucher": self.purchase_invoice,
 					"company": self.company,
@@ -210,7 +228,7 @@ class AssetRepair(AccountsController):
 					"voucher_type": self.doctype,
 					"voucher_no": self.name,
 					"cost_center": self.cost_center,
-					"posting_date": getdate(),
+					"posting_date": self.completion_date,
 					"company": self.company,
 				},
 				item=self,
@@ -244,7 +262,7 @@ class AssetRepair(AccountsController):
 							"voucher_type": self.doctype,
 							"voucher_no": self.name,
 							"cost_center": self.cost_center,
-							"posting_date": getdate(),
+							"posting_date": self.completion_date,
 							"company": self.company,
 						},
 						item=self,
@@ -261,7 +279,7 @@ class AssetRepair(AccountsController):
 							"voucher_type": self.doctype,
 							"voucher_no": self.name,
 							"cost_center": self.cost_center,
-							"posting_date": getdate(),
+							"posting_date": self.completion_date,
 							"against_voucher_type": "Stock Entry",
 							"against_voucher": self.stock_entry,
 							"company": self.company,

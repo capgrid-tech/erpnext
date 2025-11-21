@@ -157,7 +157,7 @@
   "party_account_currency",
   "inter_company_order_reference",
   "is_old_subcontracting_flow",
-  "dashboard"
+  "connections_tab"
  ],
  "fields": [
   {
@@ -484,6 +484,7 @@
    "depends_on": "eval:doc.is_subcontracted",
    "fieldname": "supplier_warehouse",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Supplier Warehouse",
    "options": "Warehouse"
   },
@@ -506,6 +507,7 @@
    "allow_on_submit": 1,
    "fieldname": "items",
    "fieldtype": "Table",
+   "label": "Items",
    "oldfieldname": "po_details",
    "oldfieldtype": "Table",
    "options": "Purchase Order Item",
@@ -658,7 +660,7 @@
   {
    "allow_on_submit": 1,
    "fieldname": "other_charges_calculation",
-   "fieldtype": "Long Text",
+   "fieldtype": "Text Editor",
    "label": "Taxes and Charges Calculation",
    "no_copy": 1,
    "oldfieldtype": "HTML",
@@ -1147,8 +1149,7 @@
    "allow_on_submit": 1,
    "fieldname": "before_items_section",
    "fieldtype": "Section Break",
-   "hide_border": 1,
-   "label": "Items"
+   "hide_border": 1
   },
   {
    "fieldname": "items_col_break",
@@ -1220,6 +1221,7 @@
    "depends_on": "is_internal_supplier",
    "fieldname": "set_from_warehouse",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Set From Warehouse",
    "options": "Warehouse"
   },
@@ -1233,11 +1235,6 @@
    "fieldname": "more_info_tab",
    "fieldtype": "Tab Break",
    "label": "More Info"
-  },
-  {
-   "fieldname": "dashboard",
-   "fieldtype": "Tab Break",
-   "label": "Dashboard"
   },
   {
    "fieldname": "column_break_7",
@@ -1319,6 +1316,12 @@
    "fieldname": "shipping_address_section",
    "fieldtype": "Section Break",
    "label": "Shipping Address"
+  },
+  {
+   "fieldname": "connections_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connections",
+   "show_dashboard": 1
   }
  ],
  "icon": "fa fa-file-text",

@@ -131,7 +131,7 @@
    "label": "Customer Type",
    "oldfieldname": "customer_type",
    "oldfieldtype": "Select",
-   "options": "Company\nIndividual",
+   "options": "Company\nIndividual\nPartnership",
    "reqd": 1
   },
   {
@@ -445,7 +445,6 @@
    "report_hide": 1
   },
   {
-   "default": "0",
    "fieldname": "credit_limits",
    "fieldtype": "Table",
    "label": "Credit Limit",
@@ -480,7 +479,7 @@
   {
    "fieldname": "contact_and_address_tab",
    "fieldtype": "Tab Break",
-   "label": "Contact & Address"
+   "label": "Address & Contact"
   },
   {
    "fieldname": "defaults_tab",
@@ -566,7 +565,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2025-09-09 10:49:59.398838",
+ "modified": "2024-05-08 18:03:20.716169",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
@@ -649,7 +648,7 @@
  "search_fields": "customer_name,customer_group,territory, mobile_no,primary_address",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
- "sort_order": "ASC",
+ "sort_order": "DESC",
  "states": [],
  "title_field": "customer_name",
  "track_changes": 1

@@ -2,6 +2,8 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
+from frappe.model.docstatus import DocStatus
 from frappe.utils import flt
 
 from erpnext.controllers.status_updater import StatusUpdater
@@ -14,6 +16,9 @@ class BankTransaction(StatusUpdater):
 	def on_submit(self):
 		self.clear_linked_payment_entries()
 		self.set_status()
+
+		if frappe.db.get_single_value("Accounts Settings", "enable_party_matching"):
+			self.auto_set_party()
 
 	_saving_flag = False
 
@@ -37,16 +42,17 @@ class BankTransaction(StatusUpdater):
 		else:
 			allocated_amount = 0.0
 
-		amount = abs(flt(self.withdrawal) - flt(self.deposit))
-		self.db_set("allocated_amount", flt(allocated_amount))
-		self.db_set("unallocated_amount", amount - flt(allocated_amount))
+		unallocated_amount = abs(flt(self.withdrawal) - flt(self.deposit)) - allocated_amount
+
+		self.db_set("allocated_amount", flt(allocated_amount, self.precision("allocated_amount")))
+		self.db_set("unallocated_amount", flt(unallocated_amount, self.precision("unallocated_amount")))
 		self.reload()
 		self.set_status(update=True)
 
 	def add_payment_entries(self, vouchers):
 		"Add the vouchers with zero allocation. Save() will perform the allocations and clearance"
 		if 0.0 >= self.unallocated_amount:
-			frappe.throw(frappe._(f"Bank Transaction {self.name} is already fully reconciled"))
+			frappe.throw(frappe._("Bank Transaction {0} is already fully reconciled").format(self.name))
 
 		added = False
 		for voucher in vouchers:
@@ -65,7 +71,7 @@ class BankTransaction(StatusUpdater):
 					"payment_entry": voucher["payment_name"],
 					"allocated_amount": 0.0,  # Temporary
 				}
-				child = self.append("payment_entries", pe)
+				self.append("payment_entries", pe)
 				added = True
 
 		# runs on_update_after_submit
@@ -86,12 +92,17 @@ class BankTransaction(StatusUpdater):
 		    - 0 > a: Error: already over-allocated
 		- clear means: set the latest transaction date as clearance date
 		"""
-		gl_bank_account = frappe.db.get_value("Bank Account", self.bank_account, "account")
 		remaining_amount = self.unallocated_amount
+		payment_entry_docs = [(pe.payment_document, pe.payment_entry) for pe in self.payment_entries]
+		pe_bt_allocations = get_total_allocated_amount(payment_entry_docs)
+
 		for payment_entry in self.payment_entries:
 			if payment_entry.allocated_amount == 0.0:
 				unallocated_amount, should_clear, latest_transaction = get_clearance_details(
-					self, payment_entry
+					self,
+					payment_entry,
+					pe_bt_allocations.get((payment_entry.payment_document, payment_entry.payment_entry))
+					or [],
 				)
 
 				if 0.0 == unallocated_amount:
@@ -114,9 +125,7 @@ class BankTransaction(StatusUpdater):
 
 				elif 0.0 > unallocated_amount:
 					self.db_delete_payment_entry(payment_entry)
-					frappe.throw(
-						frappe._(f"Voucher {payment_entry.payment_entry} is over-allocated by {unallocated_amount}")
-					)
+					frappe.throw(frappe._("Voucher {0} is over-allocated by {1}").format(unallocated_amount))
 
 		self.reload()
 
@@ -148,6 +157,30 @@ class BankTransaction(StatusUpdater):
 			payment_entry.payment_document, payment_entry.payment_entry, clearance_date, self
 		)
 
+	def auto_set_party(self):
+		from erpnext.accounts.doctype.bank_transaction.auto_match_party import AutoMatchParty
+
+		if self.party_type and self.party:
+			return
+
+		result = None
+		try:
+			result = AutoMatchParty(
+				bank_party_account_number=self.bank_party_account_number,
+				bank_party_iban=self.bank_party_iban,
+				bank_party_name=self.bank_party_name,
+				description=self.description,
+				deposit=self.deposit,
+			).match()
+		except Exception:
+			frappe.log_error(title=_("Error in party matching for Bank Transaction {0}").format(self.name))
+
+		if result:
+			party_type, party = result
+			frappe.db.set_value(
+				"Bank Transaction", self.name, field={"party_type": party_type, "party": party}
+			)
+
 
 @frappe.whitelist()
 def get_doctypes_for_bank_reconciliation():
@@ -155,7 +188,7 @@ def get_doctypes_for_bank_reconciliation():
 	return frappe.get_hooks("bank_reconciliation_doctypes")
 
 
-def get_clearance_details(transaction, payment_entry):
+def get_clearance_details(transaction, payment_entry, bt_allocations):
 	"""
 	There should only be one bank gle for a voucher.
 	Could be none for a Bank Transaction.
@@ -164,9 +197,6 @@ def get_clearance_details(transaction, payment_entry):
 	"""
 	gl_bank_account = frappe.db.get_value("Bank Account", transaction.bank_account, "account")
 	gles = get_related_bank_gl_entries(payment_entry.payment_document, payment_entry.payment_entry)
-	bt_allocations = get_total_allocated_amount(
-		payment_entry.payment_document, payment_entry.payment_entry
-	)
 
 	unallocated_amount = min(
 		transaction.unallocated_amount,
@@ -178,7 +208,9 @@ def get_clearance_details(transaction, payment_entry):
 		if gle["gl_account"] == gl_bank_account:
 			if gle["amount"] <= 0.0:
 				frappe.throw(
-					frappe._(f"Voucher {payment_entry.payment_entry} value is broken: {gle['amount']}")
+					frappe._("Voucher {0} value is broken: {1}").format(
+						payment_entry.payment_entry, gle["amount"]
+					)
 				)
 
 			unmatched_gles -= 1
@@ -220,49 +252,56 @@ def get_related_bank_gl_entries(doctype, docname):
 	return result
 
 
-def get_total_allocated_amount(doctype, docname):
+def get_total_allocated_amount(docs):
 	"""
 	Gets the sum of allocations for a voucher on each bank GL account
 	along with the latest bank transaction name & date
 	NOTE: query may also include just saved vouchers/payments but with zero allocated_amount
 	"""
+	if not docs:
+		return {}
+
 	# nosemgrep: frappe-semgrep-rules.rules.frappe-using-db-sql
 	result = frappe.db.sql(
 		"""
-		SELECT total, latest_name, latest_date, gl_account FROM (
+		SELECT total, latest_name, latest_date, gl_account, payment_document, payment_entry FROM (
 			SELECT
 				ROW_NUMBER() OVER w AS rownum,
-				SUM(btp.allocated_amount) OVER(PARTITION BY ba.account) AS total,
+				SUM(btp.allocated_amount) OVER(PARTITION BY ba.account, btp.payment_document, btp.payment_entry) AS total,
 				FIRST_VALUE(bt.name) OVER w AS latest_name,
 				FIRST_VALUE(bt.date) OVER w AS latest_date,
-				ba.account AS gl_account
+				ba.account AS gl_account,
+				btp.payment_document,
+				btp.payment_entry
 			FROM
 				`tabBank Transaction Payments` btp
 			LEFT JOIN `tabBank Transaction` bt ON bt.name=btp.parent
 			LEFT JOIN `tabBank Account` ba ON ba.name=bt.bank_account
 			WHERE
-				btp.payment_document = %(doctype)s
-				AND btp.payment_entry = %(docname)s
+				(btp.payment_document, btp.payment_entry) IN %(docs)s
 				AND bt.docstatus = 1
-			WINDOW w AS (PARTITION BY ba.account ORDER BY bt.date desc)
+			WINDOW w AS (PARTITION BY ba.account, btp.payment_document, btp.payment_entry ORDER BY bt.date DESC)
 		) temp
 		WHERE
 			rownum = 1
 		""",
-		dict(doctype=doctype, docname=docname),
+		dict(docs=docs),
 		as_dict=True,
 	)
+
+	payment_allocation_details = {}
 	for row in result:
 		# Why is this *sometimes* a byte string?
 		if isinstance(row["latest_name"], bytes):
 			row["latest_name"] = row["latest_name"].decode()
 		row["latest_date"] = frappe.utils.getdate(row["latest_date"])
-	return result
+		payment_allocation_details.setdefault((row["payment_document"], row["payment_entry"]), []).append(row)
+
+	return payment_allocation_details
 
 
 def get_paid_amount(payment_entry, currency, gl_bank_account):
 	if payment_entry.payment_document in ["Payment Entry", "Sales Invoice", "Purchase Invoice"]:
-
 		paid_amount_field = "paid_amount"
 		if payment_entry.payment_document == "Payment Entry":
 			doc = frappe.get_doc("Payment Entry", payment_entry.payment_entry)
@@ -281,10 +320,13 @@ def get_paid_amount(payment_entry, currency, gl_bank_account):
 		)
 
 	elif payment_entry.payment_document == "Journal Entry":
-		return frappe.db.get_value(
-			"Journal Entry Account",
-			{"parent": payment_entry.payment_entry, "account": gl_bank_account},
-			"sum(credit_in_account_currency)",
+		return abs(
+			frappe.db.get_value(
+				"Journal Entry Account",
+				{"parent": payment_entry.payment_entry, "account": gl_bank_account},
+				"sum(debit_in_account_currency-credit_in_account_currency)",
+			)
+			or 0
 		)
 
 	elif payment_entry.payment_document == "Expense Claim":
@@ -298,9 +340,7 @@ def get_paid_amount(payment_entry, currency, gl_bank_account):
 		)
 
 	elif payment_entry.payment_document == "Loan Repayment":
-		return frappe.db.get_value(
-			payment_entry.payment_document, payment_entry.payment_entry, "amount_paid"
-		)
+		return frappe.db.get_value(payment_entry.payment_document, payment_entry.payment_entry, "amount_paid")
 
 	elif payment_entry.payment_document == "Bank Transaction":
 		dep, wth = frappe.db.get_value(
@@ -310,9 +350,7 @@ def get_paid_amount(payment_entry, currency, gl_bank_account):
 
 	else:
 		frappe.throw(
-			"Please reconcile {0}: {1} manually".format(
-				payment_entry.payment_document, payment_entry.payment_entry
-			)
+			f"Please reconcile {payment_entry.payment_document}: {payment_entry.payment_entry} manually"
 		)
 
 
@@ -368,3 +406,21 @@ def unclear_reference_payment(doctype, docname, bt_name):
 	bt = frappe.get_doc("Bank Transaction", bt_name)
 	set_voucher_clearance(doctype, docname, None, bt)
 	return docname
+
+
+def remove_from_bank_transaction(doctype, docname):
+	"""Remove a (cancelled) voucher from all Bank Transactions."""
+	for bt_name in get_reconciled_bank_transactions(doctype, docname):
+		bt = frappe.get_doc("Bank Transaction", bt_name)
+		if bt.docstatus == DocStatus.cancelled():
+			continue
+
+		modified = False
+
+		for pe in bt.payment_entries:
+			if pe.payment_document == doctype and pe.payment_entry == docname:
+				bt.remove(pe)
+				modified = True
+
+		if modified:
+			bt.save()

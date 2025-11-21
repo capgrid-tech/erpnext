@@ -106,7 +106,8 @@
    "columns": 2,
    "fieldname": "rate",
    "fieldtype": "Float",
-   "label": "Rate",
+   "in_list_view": 1,
+   "label": "Tax Rate",
    "oldfieldname": "rate",
    "oldfieldtype": "Currency"
   },
@@ -223,7 +224,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-08-21 17:02:34.032107",
+ "modified": "2024-01-14 10:08:17.776528",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Sales Taxes and Charges",

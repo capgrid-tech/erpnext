@@ -400,7 +400,8 @@
    "no_copy": 1,
    "options": "Material Request",
    "print_hide": 1,
-   "read_only": 1
+   "read_only": 1,
+   "search_index": 1
   },
   {
    "fieldname": "material_request_item",
@@ -562,7 +563,8 @@
    "label": "Job Card Item",
    "no_copy": 1,
    "print_hide": 1,
-   "read_only": 1
+   "read_only": 1,
+   "search_index": 1
   },
   {
    "default": "0",

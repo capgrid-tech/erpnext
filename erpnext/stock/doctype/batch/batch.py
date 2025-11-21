@@ -6,7 +6,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 from frappe.model.naming import make_autoname, revert_series_if_last
-from frappe.query_builder.functions import CurDate, Sum, Timestamp
+from frappe.query_builder.functions import CombineDatetime, CurDate, Sum
 from frappe.utils import cint, flt, get_link_to_form, nowtime
 from frappe.utils.data import add_days
 from frappe.utils.jinja import render_template
@@ -165,9 +165,7 @@ class Batch(Document):
 
 
 @frappe.whitelist()
-def get_batch_qty(
-	batch_no=None, warehouse=None, item_code=None, posting_date=None, posting_time=None
-):
+def get_batch_qty(batch_no=None, warehouse=None, item_code=None, posting_date=None, posting_time=None):
 	"""Returns batch actual qty if warehouse is passed,
 	        or returns dict of qty by warehouse if warehouse is None
 
@@ -192,7 +190,8 @@ def get_batch_qty(
 				posting_time = nowtime()
 
 			query = query.where(
-				Timestamp(sle.posting_date, sle.posting_time) <= Timestamp(posting_date, posting_time)
+				CombineDatetime(sle.posting_date, sle.posting_time)
+				<= CombineDatetime(posting_date, posting_time)
 			)
 
 		out = query.run(as_list=True)[0][0] or 0
@@ -220,9 +219,7 @@ def get_batch_qty(
 def get_batches_by_oldest(item_code, warehouse):
 	"""Returns the oldest batch and qty for the given item_code and warehouse"""
 	batches = get_batch_qty(item_code=item_code, warehouse=warehouse)
-	batches_dates = [
-		[batch, frappe.get_value("Batch", batch.batch_no, "expiry_date")] for batch in batches
-	]
+	batches_dates = [[batch, frappe.get_value("Batch", batch.batch_no, "expiry_date")] for batch in batches]
 	batches_dates.sort(key=lambda tup: tup[1])
 	return batches_dates
 
@@ -296,7 +293,9 @@ def get_batch_no(item_code, warehouse, qty=1, throw=False, serial_no=None):
 		frappe.msgprint(
 			_(
 				"Please select a Batch for Item {0}. Unable to find a single batch that fulfills this requirement"
-			).format(frappe.bold(item_code))
+			).format(frappe.bold(item_code)),
+			indicator="yellow",
+			alert=(not throw),
 		)
 		if throw:
 			raise UnableToSelectBatchError
@@ -376,7 +375,7 @@ def get_pos_reserved_batch_qty(filters):
 
 	p = frappe.qb.DocType("POS Invoice").as_("p")
 	item = frappe.qb.DocType("POS Invoice Item").as_("item")
-	sum_qty = frappe.query_builder.functions.Sum(item.qty).as_("qty")
+	sum_qty = frappe.query_builder.functions.Sum(item.stock_qty).as_("qty")
 
 	reserved_batch_qty = (
 		frappe.qb.from_(p)

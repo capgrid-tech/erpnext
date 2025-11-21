@@ -54,6 +54,7 @@
   "lft",
   "rgt",
   "old_parent",
+  "template_task",
   "amended_from"
  ],
  "fields": [
@@ -383,6 +384,12 @@
    "fieldtype": "Date",
    "label": "Completed On",
    "mandatory_depends_on": "eval: doc.status == \"Completed\""
+  },
+  {
+   "fieldname": "template_task",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Template Task"
   },
   {
    "fieldname": "amended_from",

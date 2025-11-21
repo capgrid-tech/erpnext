@@ -11,6 +11,8 @@
   "warehouse",
   "posting_date",
   "posting_time",
+  "posting_datetime",
+  "is_adjustment_entry",
   "column_break_6",
   "voucher_type",
   "voucher_no",
@@ -95,7 +97,6 @@
    "oldfieldtype": "Date",
    "print_width": "100px",
    "read_only": 1,
-   "search_index": 1,
    "width": "100px"
   },
   {
@@ -232,7 +233,7 @@
   {
    "allow_on_submit": 1,
    "fieldname": "stock_queue",
-   "fieldtype": "Text",
+   "fieldtype": "Long Text",
    "label": "FIFO Stock Queue (qty, rate)",
    "oldfieldname": "fcfs_stack",
    "oldfieldtype": "Text",
@@ -255,7 +256,6 @@
    "options": "Company",
    "print_width": "150px",
    "read_only": 1,
-   "search_index": 1,
    "width": "150px"
   },
   {
@@ -313,7 +313,21 @@
    "default": "0",
    "fieldname": "recalculate_rate",
    "fieldtype": "Check",
-   "label": "Recalculate Incoming/Outgoing Rate"
+   "label": "Recalculate Incoming/Outgoing Rate",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_adjustment_entry",
+   "fieldtype": "Check",
+   "label": "Is Adjustment Entry"
+  },
+  {
+   "fieldname": "posting_datetime",
+   "fieldtype": "Datetime",
+   "label": "Posting Datetime",
+   "search_index": 1
   }
  ],
  "hide_toolbar": 1,
@@ -322,7 +336,7 @@
  "in_create": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-28 21:52:12.091744",
+ "modified": "2024-08-27 09:29:03.961443",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Ledger Entry",

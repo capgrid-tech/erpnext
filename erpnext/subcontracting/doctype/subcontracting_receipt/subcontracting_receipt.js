@@ -67,24 +67,12 @@ frappe.ui.form.on('Subcontracting Receipt', {
 			}
 		});
 
-		let batch_no_field = frm.get_docfield("items", "batch_no");
-		if (batch_no_field) {
-			batch_no_field.get_route_options_for_new_doc = function(row) {
-				return {
-					"item": row.doc.item_code
+		frm.set_query('batch_no', 'supplied_items', function(doc, cdt, cdn) {
+			var row = locals[cdt][cdn];
+			return {
+				filters: {
+					item: row.rm_item_code
 				}
-			};
-		}
-
-		frappe.db.get_single_value('Buying Settings', 'backflush_raw_materials_of_subcontract_based_on').then(val => {
-			if (val == 'Material Transferred for Subcontract') {
-				frm.fields_dict['supplied_items'].grid.grid_rows.forEach((grid_row) => {
-					grid_row.docfields.forEach((df) => {
-						if (df.fieldname == 'consumed_qty') {
-							df.read_only = 0;
-						}
-					});
-				});
 			}
 		});
 	},
@@ -148,6 +136,17 @@ frappe.ui.form.on('Subcontracting Receipt', {
 					}
 				});
 			}, __('Get Items From'));
+
+			frm.fields_dict.supplied_items.grid.update_docfield_property('consumed_qty', 'read_only', frm.doc.__onload && frm.doc.__onload.backflush_based_on === 'BOM');
+		}
+
+		let batch_no_field = frm.get_docfield('items', 'batch_no');
+		if (batch_no_field) {
+			batch_no_field.get_route_options_for_new_doc = function(row) {
+				return {
+					'item': row.doc.item_code
+				}
+			};
 		}
 	},
 

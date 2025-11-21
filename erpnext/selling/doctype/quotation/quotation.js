@@ -13,27 +13,13 @@ frappe.ui.form.on('Quotation', {
 		frm.set_query("quotation_to", function() {
 			return{
 				"filters": {
-					"name": ["in", ["Customer", "Lead"]],
+					"name": ["in", ["Customer", "Lead", "Prospect"]],
 				}
 			}
 		});
 
 		frm.set_df_property('packed_items', 'cannot_add_rows', true);
 		frm.set_df_property('packed_items', 'cannot_delete_rows', true);
-
-		frm.set_query('company_address', function(doc) {
-			if(!doc.company) {
-				frappe.throw(__('Please set Company'));
-			}
-
-			return {
-				query: 'frappe.contacts.doctype.address.address.address_query',
-				filters: {
-					link_doctype: 'Company',
-					link_name: doc.company
-				}
-			};
-		});
 	},
 
 	refresh: function(frm) {
@@ -45,6 +31,8 @@ frappe.ui.form.on('Quotation', {
 		frm.trigger("set_label");
 		frm.trigger("toggle_reqd_lead_customer");
 		frm.trigger("set_dynamic_field_label");
+		frm.set_value("party_name", "");
+		frm.set_value("customer_name", "");
 	},
 
 	set_label: function(frm) {
@@ -71,7 +59,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 		frappe.dynamic_link = {
 			doc: this.frm.doc,
 			fieldname: 'party_name',
-			doctype: doc.quotation_to == 'Customer' ? 'Customer' : 'Lead',
+			doctype: doc.quotation_to,
 		};
 
 		var me = this;
@@ -160,19 +148,17 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 	}
 
 	set_dynamic_field_label(){
-		if (this.frm.doc.quotation_to == "Customer")
-		{
+		if (this.frm.doc.quotation_to == "Customer") {
 			this.frm.set_df_property("party_name", "label", "Customer");
 			this.frm.fields_dict.party_name.get_query = null;
-		}
-
-		if (this.frm.doc.quotation_to == "Lead")
-		{
+		} else if (this.frm.doc.quotation_to == "Lead") {
 			this.frm.set_df_property("party_name", "label", "Lead");
-
 			this.frm.fields_dict.party_name.get_query = function() {
 				return{	query: "erpnext.controllers.queries.lead_query" }
 			}
+		} else if (this.frm.doc.quotation_to == "Prospect") {
+			this.frm.set_df_property("party_name", "label", "Prospect");
+			this.frm.fields_dict.party_name.get_query = null;
 		}
 	}
 

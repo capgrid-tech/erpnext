@@ -22,9 +22,10 @@ class Quotation(SellingController):
 			self.indicator_title = "Expired"
 
 	def validate(self):
-		super(Quotation, self).validate()
+		super().validate()
 		self.set_status()
-		self.validate_uom_is_integer("stock_uom", "qty")
+		self.validate_uom_is_integer("stock_uom", "stock_qty")
+		self.validate_uom_is_integer("uom", "qty")
 		self.validate_valid_till()
 		self.validate_shopping_cart_items()
 		self.set_customer_name()
@@ -105,7 +106,8 @@ class Quotation(SellingController):
 		def is_in_sales_order(row):
 			in_sales_order = bool(
 				frappe.db.exists(
-					"Sales Order Item", {"quotation_item": row.name, "item_code": row.item_code, "docstatus": 1}
+					"Sales Order Item",
+					{"quotation_item": row.name, "item_code": row.item_code, "docstatus": 1},
 				)
 			)
 			return in_sales_order
@@ -195,7 +197,7 @@ class Quotation(SellingController):
 	def on_cancel(self):
 		if self.lost_reasons:
 			self.lost_reasons = []
-		super(Quotation, self).on_cancel()
+		super().on_cancel()
 
 		# update enquiry status
 		self.set_status(update=True)
@@ -286,6 +288,19 @@ def _make_sales_order(source_name, target_doc=None, ignore_permissions=False):
 			target.commission_rate = frappe.get_value(
 				"Sales Partner", source.referral_sales_partner, "commission_rate"
 			)
+
+		# sales team
+		if not target.get("sales_team"):
+			for d in customer.get("sales_team") or []:
+				target.append(
+					"sales_team",
+					{
+						"sales_person": d.sales_person,
+						"allocated_percentage": d.allocated_percentage or None,
+						"commission_rate": d.commission_rate,
+					},
+				)
+
 		target.flags.ignore_permissions = ignore_permissions
 		target.run_method("set_missing_values")
 		target.run_method("calculate_taxes_and_totals")
@@ -307,7 +322,11 @@ def _make_sales_order(source_name, target_doc=None, ignore_permissions=False):
 		2. If selections: Is Alternative Item/Has Alternative Item: Map if selected and adequate qty
 		3. If selections: Simple row: Map if adequate qty
 		"""
-		has_qty = item.qty > 0
+		balance_qty = item.qty - ordered_items.get(item.item_code, 0.0)
+		if balance_qty <= 0:
+			return False
+
+		has_qty = balance_qty
 
 		if not selected_rows:
 			return not item.is_alternative
@@ -338,9 +357,6 @@ def _make_sales_order(source_name, target_doc=None, ignore_permissions=False):
 		ignore_permissions=ignore_permissions,
 	)
 
-	# postprocess: fetch shipping address, set missing values
-	doclist.set_onload("ignore_price_list", True)
-
 	return doclist
 
 
@@ -359,12 +375,8 @@ def set_expired_status():
 	# if not exists any SO, set status as Expired
 	frappe.db.multisql(
 		{
-			"mariadb": """UPDATE `tabQuotation`  SET `tabQuotation`.status = 'Expired' WHERE {cond} and not exists({so_against_quo})""".format(
-				cond=cond, so_against_quo=so_against_quo
-			),
-			"postgres": """UPDATE `tabQuotation` SET status = 'Expired' FROM `tabSales Order`, `tabSales Order Item` WHERE {cond} and not exists({so_against_quo})""".format(
-				cond=cond, so_against_quo=so_against_quo
-			),
+			"mariadb": f"""UPDATE `tabQuotation`  SET `tabQuotation`.status = 'Expired' WHERE {cond} and not exists({so_against_quo})""",
+			"postgres": f"""UPDATE `tabQuotation` SET status = 'Expired' FROM `tabSales Order`, `tabSales Order Item` WHERE {cond} and not exists({so_against_quo})""",
 		},
 		(nowdate()),
 	)
@@ -409,8 +421,6 @@ def _make_sales_invoice(source_name, target_doc=None, ignore_permissions=False):
 		ignore_permissions=ignore_permissions,
 	)
 
-	doclist.set_onload("ignore_price_list", True)
-
 	return doclist
 
 
@@ -449,12 +459,15 @@ def _make_customer(source_name, ignore_permissions=False):
 						raise
 				except frappe.MandatoryError as e:
 					mandatory_fields = e.args[0].split(":")[1].split(",")
-					mandatory_fields = [customer.meta.get_label(field.strip()) for field in mandatory_fields]
+					mandatory_fields = [
+						_(customer.meta.get_label(field.strip())) for field in mandatory_fields
+					]
 
 					frappe.local.message_log = []
 					lead_link = frappe.utils.get_link_to_form("Lead", lead_name)
 					message = (
-						_("Could not auto create Customer due to the following missing mandatory field(s):") + "<br>"
+						_("Could not auto create Customer due to the following missing mandatory field(s):")
+						+ "<br>"
 					)
 					message += "<br><ul><li>" + "</li><li>".join(mandatory_fields) + "</li></ul>"
 					message += _("Please create Customer from Lead {0}.").format(lead_link)
