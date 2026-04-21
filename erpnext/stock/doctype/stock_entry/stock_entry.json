@@ -407,14 +407,16 @@
    "collapsible_depends_on": "total_additional_costs",
    "fieldname": "additional_costs_section",
    "fieldtype": "Tab Break",
-   "label": "Additional Costs"
+   "label": "Additional Costs",
+   "read_only": 1
   },
   {
    "fieldname": "additional_costs",
    "fieldtype": "Table",
    "hidden": 1,
    "label": "Additional Costs",
-   "options": "Landed Cost Taxes and Charges"
+   "options": "Landed Cost Taxes and Charges",
+   "read_only": 1
   },
   {
    "fieldname": "contact_section",
@@ -664,7 +666,6 @@
    "hidden": 1,
    "label": "Total Additional Costs",
    "options": "Company:company:default_currency",
-   "print_hide_if_no_value": 1,
    "read_only": 1
   }
  ],
@@ -673,7 +674,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-18 15:36:54.454502",
+ "modified": "2025-12-26 16:51:27.505865",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Entry",

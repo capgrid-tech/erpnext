@@ -722,6 +722,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "taxes",
    "fieldtype": "Table",
    "label": "Purchase Taxes and Charges",
@@ -934,6 +935,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "in_words",
    "fieldtype": "Data",
    "label": "In Words",
@@ -1571,7 +1573,7 @@
  "idx": 204,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-20 11:22:28.091535",
+ "modified": "2026-03-25 16:29:13.151694",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Purchase Invoice",

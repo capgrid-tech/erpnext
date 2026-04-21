@@ -177,13 +177,15 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
+   "default": "PO2526CGRP",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
    "no_copy": 1,
    "oldfieldname": "naming_series",
    "oldfieldtype": "Select",
-   "options": "PO2425CGRP\nPO2425CGOP\nPO2425CGSP\nPO2425CGPL\nPO2425CGIMP\nPO2526CGRP\nPO2526CGOP\nPO2526CGSP\nPO2526CGPL\nPO2526CGIMP",
+   "options": "PO2526CGRP\nPO2526CGOP\nPO2526CGSP\nPO2526CGPL\nPO2526CGIMP",
    "print_hide": 1,
    "reqd": 1,
    "set_only_once": 1
@@ -1110,7 +1112,7 @@
    "fieldname": "tax_category",
    "fieldtype": "Select",
    "label": "Tax Category",
-   "options": "\nOut-State (Purchase)\nIn-State (Purchase)"
+   "options": "\nOut-State (Purchase)\nIn-State (Purchase)\nReverse Charge ( RCM )\nReverse Charge In-State"
   },
   {
    "depends_on": "supplied_items",
@@ -1325,7 +1327,7 @@
  "idx": 105,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-14 14:43:18.873729",
+ "modified": "2026-04-14 15:57:52.196573",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Purchase Order",

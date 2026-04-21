@@ -9,14 +9,14 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2021-07-28 12:18:24.028737",
+ "modified": "2026-03-12 16:52:59.306642",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Opportunity Summary by Sales Stage",
  "owner": "Administrator",
  "prepared_report": 0,
  "ref_doctype": "Opportunity",
- "report_name": "Opportunity Summary by Sales Stage ",
+ "report_name": "Opportunity Summary by Sales Stage",
  "report_type": "Script Report",
  "roles": [
   {

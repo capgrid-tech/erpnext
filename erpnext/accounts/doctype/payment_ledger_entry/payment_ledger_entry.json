@@ -75,6 +75,7 @@
    "options": "voucher_type"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "against_voucher_type",
    "fieldtype": "Link",
    "in_standard_filter": 1,
@@ -82,6 +83,7 @@
    "options": "DocType"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "against_voucher_no",
    "fieldtype": "Dynamic Link",
    "in_list_view": 1,
@@ -149,7 +151,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-12 16:46:56.712465",
+ "modified": "2025-12-11 19:18:53.656129",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Payment Ledger Entry",

@@ -62,7 +62,7 @@
    "fieldname": "subject",
    "fieldtype": "Select",
    "label": "Subject",
-   "options": "\nInvoice Cancel\nPR/PRET Cancel\nDraft Remove\nChallan Help\nSupplier Open\nLot Break\nBlock/Unblock\nCreate Sales Order\nERP ERROR/GAP\nFinance Report Analysis\nFOC Received Entry Help\nProforma Invoice\nInbound Help\nItem Code Amendment\nItem Code Creation\nNew Development Require\nNew Report Required\nOutbound Help\nPO Open for PR\nPO Open for PRET\nPrice Update In PO\nPrice Update In S.O.\nProcess Training\nQC Help\nReport Data Required\nSmall Development Require\nSO Open for Credit Note\nSO Open for Invoice\nStock Consume/Issue\nStock Transfer\nPO Update\nSO Update\nSupplier Details Update\nTransactional Error Support\nERP User Creation\nERP Access Modifications\nERP User Disable\nFreight Invoice\ncustomer details update",
+   "options": "\nInvoice Cancel\nPR/PRET Cancel\nGate Entry Cancel\nDraft Remove\nChallan Help\nSupplier Open\nLot Break\nManufacture Entry\nBlock/Unblock\nCreate Sales Order\nERP ERROR/GAP\nFinance Report Analysis\nFOC Received Entry Help\nProforma Invoice\nInbound Help\nItem Code Amendment\nItem Code Creation\nNew Development Require\nNew Report Required\nOutbound Help\nPO Open for PR\nPO Open for PRET\nPrice Update In PO\nPrice Update In S.O.\nProcess Training\nQC Help\nReport Data Required\nSmall Development Require\nSO Open for Credit Note\nSO Open for Invoice\nStock Consume/Issue\nStock Transfer\nPO Update\nSO Update\nSupplier Details Update\nTransactional Error Support\nERP User Creation\nERP Access Modifications\nERP User Disable\nFreight Invoice\ncustomer details update",
    "reqd": 1
   },
   {
@@ -400,7 +400,7 @@
  "is_tree": 1,
  "links": [],
  "max_attachments": 5,
- "modified": "2025-09-27 10:26:17.071380",
+ "modified": "2026-02-09 16:32:24.194685",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Task",

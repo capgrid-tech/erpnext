@@ -7,14 +7,14 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 3,
+ "idx": 26,
  "is_standard": "Yes",
- "modified": "2023-07-22 11:09:34.121704",
+ "modified": "2026-03-12 16:52:53.845381",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Ledger",
  "owner": "Administrator",
- "prepared_report": 0,
+ "prepared_report": 1,
  "ref_doctype": "Stock Ledger Entry",
  "report_name": "Stock Ledger",
  "report_type": "Script Report",
@@ -24,6 +24,9 @@
   },
   {
    "role": "Accounts Manager"
+  },
+  {
+   "role": "Stock Ledger"
   }
  ]
 }
