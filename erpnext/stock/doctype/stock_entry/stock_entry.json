@@ -424,6 +424,7 @@
    "label": "Supplier Details-"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "supplier",
    "fieldtype": "Link",
    "label": "Supplier",
@@ -444,6 +445,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "supplier_address",
    "fieldtype": "Link",
    "label": "Supplier Address",
@@ -453,6 +455,7 @@
    "options": "Address"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "address_display",
    "fieldtype": "Small Text",
    "label": "Address"
@@ -674,7 +677,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-12-26 16:51:27.505865",
+ "modified": "2026-05-13 15:22:19.591161",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Entry",

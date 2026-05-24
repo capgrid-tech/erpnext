@@ -176,8 +176,7 @@
    "in_standard_filter": 1,
    "label": "Full Name",
    "oldfieldname": "employee_name",
-   "oldfieldtype": "Data",
-   "read_only": 1
+   "oldfieldtype": "Data"
   },
   {
    "fetch_from": "user_id.user_image",
@@ -810,7 +809,7 @@
  "idx": 24,
  "image_field": "image",
  "links": [],
- "modified": "2022-09-13 10:27:14.579197",
+ "modified": "2026-05-20 14:50:19.558936",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Employee",
