@@ -459,6 +459,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shipping_address",
    "fieldtype": "Link",
    "label": "Select Shipping Address",
@@ -466,11 +467,11 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shipping_address_display",
    "fieldtype": "Small Text",
    "label": "Shipping Address",
-   "print_hide": 1,
-   "read_only": 1
+   "print_hide": 1
   },
   {
    "collapsible": 1,
@@ -1334,16 +1335,17 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "billing_address",
    "fieldtype": "Link",
    "label": "Select Billing Address",
    "options": "Address"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "billing_address_display",
    "fieldtype": "Small Text",
-   "label": "Billing Address",
-   "read_only": 1
+   "label": "Billing Address"
   },
   {
    "fieldname": "project",
@@ -1512,6 +1514,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company_shipping_address_section",
    "fieldtype": "Section Break",
    "label": "Company Shipping Address"
@@ -1521,6 +1524,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company_billing_address_section",
    "fieldtype": "Section Break",
    "label": "Company Billing Address"
@@ -1573,7 +1577,7 @@
  "idx": 204,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-25 16:29:13.151694",
+ "modified": "2026-07-09 13:03:22.759418",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Purchase Invoice",
